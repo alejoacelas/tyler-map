@@ -31,9 +31,9 @@ function compactCount(value: number) {
   return value >= 1000 ? `${Math.round(value / 100) / 10}k` : String(value);
 }
 
-export function MapPanel({ place, places, results, activeResult, onSelectResult, onSelectPlace }: {
+export function MapPanel({ place, places, results, activeResult, onSelectResult, onSelectPlace, onExploreMap }: {
   place: Place | null; places: Place[]; results: Result[]; activeResult: number;
-  onSelectResult: (index: number) => void; onSelectPlace: (place: Place) => void;
+  onSelectResult: (index: number) => void; onSelectPlace: (place: Place) => void; onExploreMap: () => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -42,11 +42,11 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
   const clusterIndex = useRef<Supercluster<PointProperties, ClusterProperties> | null>(null);
   const placeById = useRef(new Map<string, Place>());
   const selectedPlace = useRef(place);
-  const callbacks = useRef({ onSelectResult, onSelectPlace });
+  const callbacks = useRef({ onSelectResult, onSelectPlace, onExploreMap });
   const renderCoverage = useRef<() => void>(() => undefined);
 
   useEffect(() => { selectedPlace.current = place; }, [place]);
-  useEffect(() => { callbacks.current = { onSelectResult, onSelectPlace }; }, [onSelectResult, onSelectPlace]);
+  useEffect(() => { callbacks.current = { onSelectResult, onSelectPlace, onExploreMap }; }, [onSelectResult, onSelectPlace, onExploreMap]);
 
   useEffect(() => {
     placeById.current = new Map(places.map((item) => [item.id, item]));
@@ -171,7 +171,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
   }, [activeResult, results]);
 
   return <aside className="map-panel" aria-label="Atlas map">
-    <div ref={container} className="map-canvas" />
+    <div ref={container} className="map-canvas" onPointerDown={() => callbacks.current.onExploreMap()} />
     <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dots show readings · clusters show places"}</small></div>
     <div className="map-legend"><strong>Atlas coverage</strong><span><i className="low" />1 kind</span><span><i className="mid" />2–3 kinds</span><span><i className="high" />4+ kinds</span><small>Dots scale by readings · clusters show locations</small></div>
   </aside>;

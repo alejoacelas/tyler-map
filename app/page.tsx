@@ -92,6 +92,7 @@ export default function Home() {
   const [activeResult, setActiveResult] = useState(0);
   const [fallback, setFallback] = useState<string | null>(null);
   const [mapOpen, setMapOpen] = useState(false);
+  const [mapExploring, setMapExploring] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -113,7 +114,7 @@ export default function Home() {
   const visibleResults = useMemo(() => category === "all" ? results : results.filter((result) => result.category === category), [results, category]);
 
   async function choosePlace(next: Place, source = places) {
-    setPlace(next); setQuery(next.name); setSuggestionsOpen(false); setCategory("all"); setActiveResult(0); setLoading(true); setFallback(null); setMapOpen(false);
+    setPlace(next); setQuery(next.name); setSuggestionsOpen(false); setCategory("all"); setActiveResult(0); setLoading(true); setFallback(null); setMapOpen(false); setMapExploring(false);
     window.history.replaceState(null, "", `?place=${encodeURIComponent(next.id)}`);
     try {
       async function fetchFile(file: string) {
@@ -159,16 +160,16 @@ export default function Home() {
   }
 
   return (
-    <main className={`${place ? "atlas selected" : "atlas landing"}${mapOpen ? " map-open" : ""}`}>
+    <main className={`${place ? "atlas selected" : "atlas landing"}${mapOpen ? " map-open" : ""}${mapExploring ? " map-exploring" : ""}`}>
       <header className="topbar">
-        <button className="brand" onClick={() => { setPlace(null); setResults([]); setQuery(""); setSuggestionsOpen(false); setMapOpen(false); window.history.replaceState(null, "", "/"); searchRef.current?.focus(); }}>
+        <button className="brand" onClick={() => { setPlace(null); setResults([]); setQuery(""); setSuggestionsOpen(false); setMapOpen(false); setMapExploring(false); window.history.replaceState(null, "", "/"); searchRef.current?.focus(); }}>
           <span className="brand-mark">TC</span><span>Tyler Cowen Atlas</span>
         </button>
         <span className="edition">34,345 posts · 2003–2026</span>
       </header>
 
       <section className="search-layer" aria-label="Find a place">
-        {!place && <div className="intro"><p className="overline">A geographic index of Marginal Revolution</p><h1>Where are you<br /><em>going?</em></h1><p>Find Tyler’s guides, meals, books, people, and ideas bound to a place.</p></div>}
+        {!place && !mapExploring && <div className="intro"><p className="overline">A geographic index of Marginal Revolution</p><h1>Where are you<br /><em>going?</em></h1><p>Find Tyler’s guides, meals, books, people, and ideas bound to a place.</p></div>}
         <div className="search-wrap">
           <div className="search-box">
             <span className="search-symbol" aria-hidden="true">⌖</span>
@@ -189,7 +190,7 @@ export default function Home() {
               </button>;
             })}
           </div>}
-          {!place && <div className="examples">{EXAMPLES.map((example) => <button key={example} onClick={() => { setQuery(example); const match = searchPlaces(places, example)[0]; if (match) void choosePlace(match); }}>{example}</button>)}</div>}
+          {!place && !mapExploring && <div className="examples">{EXAMPLES.map((example) => <button key={example} onClick={() => { setQuery(example); const match = searchPlaces(places, example)[0]; if (match) void choosePlace(match); }}>{example}</button>)}</div>}
         </div>
       </section>
 
@@ -216,7 +217,7 @@ export default function Home() {
       </section>}
 
       {place && <button className="mobile-view-toggle" onClick={() => setMapOpen((open) => !open)}>{mapOpen ? "Readings" : "Map"}</button>}
-      <MapPanel place={place} places={places} results={visibleResults} activeResult={activeResult} onSelectResult={setActiveResult} onSelectPlace={(next) => void choosePlace(next)} />
+      <MapPanel place={place} places={places} results={visibleResults} activeResult={activeResult} onSelectResult={setActiveResult} onSelectPlace={(next) => void choosePlace(next)} onExploreMap={() => { if (!place) { setMapExploring(true); setSuggestionsOpen(false); } }} />
     </main>
   );
 }
