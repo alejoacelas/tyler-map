@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.projects
+.agents
+.claude
+.cursor
+data
+reproduce
+dist
+.wrangler
