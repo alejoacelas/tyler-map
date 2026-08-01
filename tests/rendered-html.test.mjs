@@ -26,6 +26,7 @@ test("ships a reproducible location index", async () => {
   ]);
   assert.ok(places.length > 30_000);
   assert.ok(places.some((place) => place.name === "Turkey" && place.resultCount > 0));
+  assert.ok(places.some((place) => place.id === "admin1:us.ut" && place.resultCount > 20));
   assert.equal(run.counts.corpusArticles, 34_345);
   assert.ok(run.counts.placesWithResults > 2_000);
   assert.ok(run.counts.unclassified > 0);

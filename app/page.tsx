@@ -7,7 +7,7 @@ type Place = {
   id: string;
   name: string;
   ascii: string;
-  type: "country" | "city";
+  type: "country" | "admin1" | "city";
   country: string;
   adminName?: string | null;
   lat: number;
@@ -15,6 +15,10 @@ type Place = {
   population: number;
   aliases: string[];
   resultCount: number;
+  totalResultCount: number;
+  categoryCount: number;
+  topCategory: string | null;
+  parentId: string | null;
   resultFile: string | null;
 };
 
@@ -57,7 +61,9 @@ function searchPlaces(places: Place[], query: string) {
     else if (name.includes(q) || aliases.some((alias) => alias.includes(q))) match = 520;
     else if (q.length > 5 && name.length >= 4 && ` ${q} `.includes(` ${name} `)) match = 460;
     if (!match) return null;
-    const score = match + Math.min(place.resultCount, 100) * 2 + Math.log10(place.population + 10) * 9 + (place.type === "country" ? 18 : 0);
+    // Exact country/city names outrank same-named administrative areas; all remain visible as suggestions.
+    const typePriority = place.type === "country" ? 100 : place.type === "city" ? 60 : 20;
+    const score = match + Math.min(place.totalResultCount, 100) * 2 + Math.log10(place.population + 10) * 9 + typePriority;
     return { place, score };
   }).filter((item): item is { place: Place; score: number } => Boolean(item))
     .sort((a, b) => b.score - a.score).slice(0, 8).map((item) => item.place);
@@ -85,6 +91,7 @@ export default function Home() {
   const [category, setCategory] = useState("all");
   const [activeResult, setActiveResult] = useState(0);
   const [fallback, setFallback] = useState<string | null>(null);
+  const [mapOpen, setMapOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -106,7 +113,7 @@ export default function Home() {
   const visibleResults = useMemo(() => category === "all" ? results : results.filter((result) => result.category === category), [results, category]);
 
   async function choosePlace(next: Place, source = places) {
-    setPlace(next); setQuery(next.name); setSuggestionsOpen(false); setCategory("all"); setActiveResult(0); setLoading(true); setFallback(null);
+    setPlace(next); setQuery(next.name); setSuggestionsOpen(false); setCategory("all"); setActiveResult(0); setLoading(true); setFallback(null); setMapOpen(false);
     window.history.replaceState(null, "", `?place=${encodeURIComponent(next.id)}`);
     try {
       async function fetchFile(file: string) {
@@ -152,9 +159,9 @@ export default function Home() {
   }
 
   return (
-    <main className={place ? "atlas selected" : "atlas landing"}>
+    <main className={`${place ? "atlas selected" : "atlas landing"}${mapOpen ? " map-open" : ""}`}>
       <header className="topbar">
-        <button className="brand" onClick={() => { setPlace(null); setResults([]); setQuery(""); setSuggestionsOpen(false); window.history.replaceState(null, "", "/"); searchRef.current?.focus(); }}>
+        <button className="brand" onClick={() => { setPlace(null); setResults([]); setQuery(""); setSuggestionsOpen(false); setMapOpen(false); window.history.replaceState(null, "", "/"); searchRef.current?.focus(); }}>
           <span className="brand-mark">TC</span><span>Tyler Cowen Atlas</span>
         </button>
         <span className="edition">34,345 posts · 2003–2026</span>
@@ -176,8 +183,8 @@ export default function Home() {
               const location = [suggestion.adminName, country?.name].filter(Boolean).join(", ");
               return <button key={suggestion.id} className={index === selectedSuggestion ? "active" : ""} role="option" aria-selected={index === selectedSuggestion}
                 onMouseEnter={() => setSelectedSuggestion(index)} onClick={() => void choosePlace(suggestion)}>
-                <span className="suggestion-icon">{suggestion.type === "country" ? "◎" : "•"}</span>
-                <span><strong>{suggestion.name}</strong><small>{suggestion.type === "city" && location ? `${location} · ` : ""}{suggestion.type} · {suggestion.resultCount ? `${suggestion.resultCount} readings` : "nearby readings"}</small></span>
+                <span className="suggestion-icon">{suggestion.type === "country" ? "◎" : suggestion.type === "admin1" ? "◉" : "•"}</span>
+                <span><strong>{suggestion.name}</strong><small>{suggestion.type !== "country" && location ? `${location} · ` : ""}{suggestion.type === "admin1" ? "state / region" : suggestion.type} · {suggestion.totalResultCount ? `${suggestion.totalResultCount} readings` : "nearby readings"}</small></span>
                 <span className="return">↵</span>
               </button>;
             })}
@@ -188,7 +195,7 @@ export default function Home() {
 
       {place && <section className="reading-panel">
         <div className="place-heading">
-          <p className="overline">{place.type} · {countries.get(place.country)?.name ?? place.country}</p>
+          <p className="overline">{place.type === "admin1" ? "State / region" : place.type} · {countries.get(place.country)?.name ?? place.country}</p>
           <h1>{place.name}</h1>
           <p>{loading ? "Reading the atlas…" : `${visibleResults.length} ${visibleResults.length === 1 ? "reading" : "readings"}`}</p>
         </div>
@@ -208,7 +215,8 @@ export default function Home() {
         <footer><a href="https://marginalrevolution.com" target="_blank" rel="noreferrer">Original writing on Marginal Revolution ↗</a><span>Place data © GeoNames · Map © OpenStreetMap contributors</span></footer>
       </section>}
 
-      <MapPanel place={place} results={visibleResults} activeResult={activeResult} onSelectResult={setActiveResult} />
+      {place && <button className="mobile-view-toggle" onClick={() => setMapOpen((open) => !open)}>{mapOpen ? "Readings" : "Map"}</button>}
+      <MapPanel place={place} places={places} results={visibleResults} activeResult={activeResult} onSelectResult={setActiveResult} onSelectPlace={(next) => void choosePlace(next)} />
     </main>
   );
 }

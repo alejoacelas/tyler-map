@@ -1,0 +1,22 @@
+{
+  "run_id": "top-place-audit-v1",
+  "prompt_version": "place-edge-audit-v1",
+  "prompt_sha256": "8dfebca56f8659672c0871e4ff350e28c1173ec27b1cc8e38086b1e9d1b5203f",
+  "model": "google/gemini-2.5-flash",
+  "top_places": 100,
+  "edges_per_place": 10,
+  "selected_edges": 998,
+  "completed": 1968,
+  "failures": 3,
+  "verdicts": {
+    "correct_place": 1116,
+    "wrong_place": 410,
+    "same_name_nonplace": 435,
+    "ambiguous": 7
+  },
+  "actual_cost_usd": 0.9235284999999985,
+  "max_cost_usd": 15,
+  "corpus_sha256": "2e0b2e3b192750b0479730cd0aa56933d3472095cb836a6ec2d2b68caf13306a",
+  "links_sha256": "86c619ec1fe352c3be435985115bc96bb8c2659159040f835766ac2b175bb3be",
+  "created_at": "2026-08-01T19:24:15.758Z"
+}

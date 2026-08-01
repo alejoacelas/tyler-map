@@ -1,6 +1,6 @@
 {
   "schemaVersion": "place-index-v1",
-  "createdAt": "2026-08-01T16:42:50.286191+00:00",
+  "createdAt": "2026-08-01T19:24:55.961315+00:00",
   "inputs": {
     "corpus": {
       "path": "/Users/alejo/best/work/once/2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl",
@@ -28,19 +28,33 @@
       "promptVersion": "geo-pilot-v2",
       "completed": 14562,
       "actualCostUsd": 2.347905809999989
+    },
+    "topPlaceAudit": {
+      "path": "/Users/alejo/best/work/once/2026-08-tyler-cowen-map/data/model-runs/top-place-audit-v1/decisions.jsonl",
+      "sha256": "4b353ab92d2fe241c2d7b3772ad1f0ea5405aed04448995de50f38417ef3f43b",
+      "model": "google/gemini-2.5-flash",
+      "promptVersion": "place-edge-audit-v1",
+      "completed": 1968,
+      "actualCostUsd": 0.9235284999999985
     }
   },
   "counts": {
     "corpusArticles": 34345,
-    "displayArticles": 20476,
-    "places": 34317,
-    "placesWithResults": 2200,
-    "articlePlaceLinks": 44257,
-    "classified": 19660,
+    "displayArticles": 18826,
+    "places": 37080,
+    "placesWithResults": 2564,
+    "articlePlaceLinks": 42436,
+    "audit": {
+      "correct_place": 1047,
+      "wrong_place": 205,
+      "same_name_nonplace": 146,
+      "ambiguous": 4
+    },
+    "classified": 18009,
     "body:usable": 33404,
-    "unclassified": 13869,
+    "unclassified": 15519,
     "body:short": 794,
-    "model_classified": 816,
+    "model_classified": 817,
     "body:empty_or_residue": 147
   },
   "thresholds": {
@@ -49,26 +63,26 @@
   },
   "outputs": {
     "public/data/places.json": {
-      "sha256": "b2d65f35ae0363cae3cc787bae690733345ce22d60beda39e74bd022d0ebe2aa",
-      "bytes": 7941613
+      "sha256": "375f4da26575a8211ed33ef27b1f042cbc2cc5a8478c360ac976d0cb31c13437",
+      "bytes": 11743816
     },
     "data/article-place-links.jsonl": {
-      "sha256": "7054d545e382e9438c9cac85ee0d41d10908b4988fe49a2c29624074430a9084",
-      "bytes": 24187434
+      "sha256": "1ca3f8287d062ce38001e11b15e96cfe598db8531db33ba930eea078a097f4cf",
+      "bytes": 23450421
     },
     "data/classification-ledger.jsonl": {
-      "sha256": "b9ef89954f785124a0dd300d4287225af3efa5a1c3383a088c09451a28654617",
-      "bytes": 5984052
+      "sha256": "be934a5faf8326ad5186f9b61c07c9afe4987c93bbb88132b4ee090d9e122fb2",
+      "bytes": 5981360
     },
     "public/data/results/": {
-      "files": 2200,
-      "bytes": 29202540
+      "files": 2564,
+      "bytes": 60759348
     }
   },
   "knownGaps": [
     "Indirect entity-place relations remain candidate data pending a separate reviewed enrichment pass.",
     "Multi-item link roundups are classified at post level, not item level.",
-    "Regions, neighborhoods, landmarks, and exact addresses are not yet in the local gazetteer.",
+    "Neighborhoods, landmarks, and exact addresses are not yet in the local gazetteer.",
     "The canonical corpus ends 2026-07-12 and needs an incremental refresh."
   ]
 }

@@ -7,7 +7,7 @@
 - GeoNames `cities15000.txt`, `countryInfo.txt`, and `admin1CodesASCII.txt`, downloaded from the [GeoNames dump](https://download.geonames.org/export/dump/) on 2026-08-01. GeoNames is CC BY 4.0.
 - `../data/curated-overrides.json`: reviewed indirect relations and hard corrections.
 
-`cities15000.txt` covers cities above 15,000 people plus capitals. This keeps browser suggestions small enough to search locally. Addresses and smaller places fall back to their nearest supported city in a later geocoding pass; they are not silently treated as exact matches.
+`cities15000.txt` covers cities above 15,000 people plus capitals. `admin1CodesASCII.txt` adds states, departments, provinces, and equivalent first-level regions; their map points are population-weighted city centroids, not boundary centroids. Addresses and smaller places are not silently treated as exact matches.
 
 ## Build
 
@@ -30,9 +30,9 @@ python3 reproduce/evaluate.py
 npm test
 ```
 
-The evaluation includes countries, cities, aliases, ambiguous names, indirect relations, one-result places, and no-result places. It reports failures rather than converting them into empty success. [data-gaps.md](data-gaps.md) states what the index still cannot support and the threshold for another pass.
+The evaluation includes countries, regions, cities, aliases, ambiguous names, hierarchy, indirect relations, one-result places, homonym exclusions, and no-result places. It reports failures rather than converting them into empty success. [data-gaps.md](data-gaps.md) states what the index still cannot support and the threshold for another pass.
 
 ## Model pass
 
-The deterministic pass keeps explicit geographic references. Three OpenRouter pilots establish the cost and failure profile before a bounded model pass reviews only records with no deterministic place. Model output reaches the site only after exact evidence and GeoNames resolution; indirect entity ties remain candidates until a source-backed review. See [classification-spec.md](classification-spec.md) and [model-pilot-report.md](model-pilot-report.md).
+The deterministic pass keeps explicit geographic references. Three OpenRouter pilots establish the cost and failure profile before a bounded model pass reviews records with no deterministic place. A second Gemini 2.5 Flash pass audits up to ten direct edges for each of the 100 highest-volume places; its verdict removes false matches and its relevance score breaks ranking ties. Model output reaches the site only after exact evidence and GeoNames resolution; indirect entity ties remain candidates until a source-backed review. See [classification-spec.md](classification-spec.md) and [model-pilot-report.md](model-pilot-report.md).
 <!--/ai-->

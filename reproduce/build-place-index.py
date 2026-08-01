@@ -19,6 +19,8 @@ ADMINS = ROOT / "reproduce/inputs/admin1CodesASCII.txt"
 OVERRIDES = ROOT / "data/curated-overrides.json"
 MODEL_RUN = ROOT / "data/model-runs/unclassified-flash-lite-v2/decisions.jsonl"
 MODEL_MANIFEST = MODEL_RUN.parent / "manifest.json"
+AUDIT_RUN = ROOT / "data/model-runs/top-place-audit-v1/decisions.jsonl"
+AUDIT_MANIFEST = AUDIT_RUN.parent / "manifest.json"
 
 SCHEMA_VERSION = "place-index-v1"
 MAX_RESULTS_PER_PLACE = 120
@@ -81,18 +83,23 @@ CITY_ALIASES = {
 COUNTRY_TITLE_HOMONYMS = {
     "country:jo": ("michael jordan", "jordan peterson", "jordan schneider", "barbara jordan", "jordan ellenberg"),
     "country:ge": ("georgia tech", "sandy springs", "atlanta", "savannah", "university of georgia", "georgia state"),
+    "country:je": ("new jersey",),
 }
 
 COUNTRY_BODY_CONTEXT = {
     "country:jo": ("amman", "jordanian", "middle east", "kingdom of jordan", "petra", "dead sea", "west bank"),
     "country:ge": ("tbilisi", "georgian", "caucasus", "black sea", "former soviet", "republic of georgia"),
+    "country:je": ("channel island", "st helier", "jersey pound", "bailiwick"),
 }
 
 # Bare tokens that often mean something other than a place. These need stronger context.
 AMBIGUOUS = {
     "america", "china", "chad", "georgia", "guinea", "jordan", "turkey",
     "reading", "nice", "mobile", "orange", "commerce", "union", "victoria",
-    "independence", "hope", "enterprise", "normal", "college", "paris",
+    "independence", "hope", "enterprise", "normal", "college", "tame",
+    "south", "western", "university", "tyler", "virginia", "north", "george",
+    "arnold", "bryan", "central", "zealand", "milton", "eastern", "northern",
+    "elizabeth", "columbia", "jackson", "henderson",
 }
 
 GEOGRAPHIC_CUES = {
@@ -155,11 +162,11 @@ def excerpt(text: str, alias: str, limit: int = 230) -> str:
 
 
 def parse_gazetteer():
-    admin_names = {}
+    admin_records = {}
     with ADMINS.open(encoding="utf-8") as handle:
         for line in handle:
-            code, name, ascii_name, _ = line.rstrip("\n").split("\t")
-            admin_names[code] = ascii_name or name
+            code, name, ascii_name, geoname_id = line.rstrip("\n").split("\t")
+            admin_records[code] = {"name": name, "ascii": ascii_name or name, "geonameId": geoname_id}
     countries = {}
     with COUNTRIES.open(encoding="utf-8") as handle:
         for line in handle:
@@ -175,6 +182,7 @@ def parse_gazetteer():
 
     cities = []
     capital_coords = {}
+    admin_sums = defaultdict(lambda: [0.0, 0.0, 0, 0])
     with CITIES.open(encoding="utf-8") as handle:
         for line in handle:
             fields = line.rstrip("\n").split("\t")
@@ -187,10 +195,16 @@ def parse_gazetteer():
             city = {
                 "id": f"geonames:{fields[0]}", "name": fields[1], "ascii": fields[2], "type": "city",
                 "country": fields[8], "admin1": fields[10], "lat": float(fields[4]), "lon": float(fields[5]),
-                "adminName": admin_names.get(f"{fields[8]}.{fields[10]}"),
+                "adminName": admin_records.get(f"{fields[8]}.{fields[10]}", {}).get("ascii"),
                 "population": int(fields[14] or 0), "featureCode": fields[7], "aliases": aliases[:40],
             }
             cities.append(city)
+            admin_code = f"{fields[8]}.{fields[10]}"
+            weight = max(city["population"], 1)
+            admin_sums[admin_code][0] += city["lat"] * weight
+            admin_sums[admin_code][1] += city["lon"] * weight
+            admin_sums[admin_code][2] += weight
+            admin_sums[admin_code][3] += city["population"]
             if normalized(fields[1]) == normalized(countries[fields[8]]["capital"]):
                 previous = capital_coords.get(fields[8])
                 if previous is None or city["population"] > previous[2]:
@@ -199,19 +213,43 @@ def parse_gazetteer():
     for code, country in countries.items():
         lat, lon, _ = capital_coords.get(code, (0.0, 0.0, 0))
         country["lat"], country["lon"] = lat, lon
-    return countries, cities
+
+    admins = []
+    for admin_code, record in admin_records.items():
+        country_code, subdivision = admin_code.split(".", 1)
+        if country_code not in countries or admin_sums[admin_code][2] == 0:
+            continue
+        lat_sum, lon_sum, weight, population = admin_sums[admin_code]
+        raw_aliases = [record["name"], record["ascii"]]
+        if country_code == "US":
+            raw_aliases.append(subdivision)
+        admins.append({
+            "id": f"admin1:{admin_code.lower()}", "name": record["name"], "ascii": record["ascii"],
+            "type": "admin1", "country": country_code, "admin1": subdivision,
+            "lat": lat_sum / weight, "lon": lon_sum / weight, "population": population,
+            "geonameId": record["geonameId"],
+            "aliases": sorted({alias for alias in raw_aliases if alias}),
+        })
+    return countries, admins, cities
 
 
-def build_alias_index(countries, cities):
+def build_alias_index(countries, admins, cities):
     aliases = defaultdict(list)
-    for place in [*countries.values(), *cities]:
+    for place in [*countries.values(), *admins, *cities]:
         for raw_alias in place["aliases"]:
             alias = normalized(raw_alias)
             if len(alias) < 3 or len(alias.split()) > 6:
                 continue
             aliases[alias].append(place)
     for alias in aliases:
-        aliases[alias].sort(key=lambda item: (item["type"] == "country", item["population"]), reverse=True)
+        aliases[alias].sort(key=lambda item: (
+            # Capitals win same-named region collisions (Tokyo, São Paulo, Mexico City).
+            # Otherwise a region wins over an unrelated small same-named city (Virginia).
+            3 if item["type"] == "country" else
+            2 if item["type"] == "city" and item.get("featureCode") in {"PPLC", "PPLA"} else
+            1 if item["type"] == "admin1" else 0,
+            item["population"],
+        ), reverse=True)
     return aliases
 
 
@@ -224,6 +262,18 @@ def load_model_decisions():
             if line.strip():
                 row = json.loads(line)
                 decisions[row["article_id"]] = row
+    return decisions
+
+
+def load_audit_decisions():
+    if not AUDIT_RUN.exists():
+        return {}
+    decisions = {}
+    with AUDIT_RUN.open(encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                row = json.loads(line)
+                decisions[(row["article_id"], row["place_id"])] = row
     return decisions
 
 
@@ -293,6 +343,19 @@ def phrases(value: str, max_words: int = 6, already_normalized: bool = False):
             yield " ".join(words[start:start + length])
 
 
+def text_looks_like_person(text: str, place: dict, alias: str) -> bool:
+    """Reject one-word place aliases used as a person's first or last name."""
+    if " " in alias or place["type"] == "country":
+        return False
+    for raw in place["aliases"]:
+        if len(raw) < 3:
+            continue
+        person_pattern = rf"(?:\b[A-ZÁÉÍÓÚÑ][\w'’.-]+\s+{re.escape(raw)}\b|\b{re.escape(raw)}\s+[A-ZÁÉÍÓÚÑ][\w'’.-]+\b)"
+        if re.search(person_pattern, text):
+            return True
+    return False
+
+
 def extract(post, aliases):
     title = post["title"] or ""
     body, body_status = clean_body(post.get("text") or "")
@@ -304,6 +367,12 @@ def extract(post, aliases):
     mentioned_country_codes = {
         option["country"]
         for alias in (title_counts + body_counts)
+        for option in aliases[alias]
+        if option["type"] == "country"
+    }
+    title_country_codes = {
+        option["country"]
+        for alias in title_counts
         for option in aliases[alias]
         if option["type"] == "country"
     }
@@ -325,7 +394,11 @@ def extract(post, aliases):
         has_geo_cue = bool(context & GEOGRAPHIC_CUES)
         raw_title_match = any(re.search(rf"(?<!\w){re.escape(raw)}(?!\w)", title) for raw in place["aliases"])
         raw_body_match = any(re.search(rf"(?<!\w){re.escape(raw)}(?!\w)", body) for raw in place["aliases"])
-        if place["type"] == "city" and " " not in alias and not (raw_title_match or raw_body_match):
+        if place["type"] in {"city", "admin1"} and " " not in alias and not (raw_title_match or raw_body_match):
+            continue
+        if title_count and text_looks_like_person(title, place, alias) and place["country"] not in title_country_codes:
+            continue
+        if body_count == 1 and text_looks_like_person(body, place, alias) and place["country"] not in mentioned_country_codes:
             continue
         if place["type"] == "city" and place["population"] < 20_000 and " " not in alias and title_count and place["country"] not in mentioned_country_codes:
             geographic_title = any(
@@ -336,8 +409,15 @@ def extract(post, aliases):
             )
             if not geographic_title:
                 continue
-        if is_ambiguous and not (title_count and raw_title_match) and not (body_count >= 2 and has_geo_cue and raw_body_match):
-            continue
+        if is_ambiguous:
+            title_has_geo_context = any(phrase in title_normalized for phrase in (
+                f"in {alias}", f"from {alias}", f"to {alias}", f"{alias} notes",
+                f"{alias} advice", f"{alias} guide", f"{alias} fact", f"{alias} travel",
+            ))
+            valid_title = title_count and raw_title_match and (place["type"] == "country" or title_has_geo_context)
+            valid_body = body_count >= 2 and has_geo_cue and raw_body_match
+            if not valid_title and not valid_body:
+                continue
         if place["type"] == "country" and place["id"] in COUNTRY_BODY_CONTEXT and not title_count:
             full_normalized = f"{title_normalized} {body_normalized}"
             if not any(term in full_normalized for term in COUNTRY_BODY_CONTEXT[place["id"]]):
@@ -369,13 +449,15 @@ def extract(post, aliases):
 
 
 def main():
-    global MODEL_DECISIONS
+    global MODEL_DECISIONS, AUDIT_DECISIONS
     MODEL_DECISIONS = load_model_decisions()
-    countries, cities = parse_gazetteer()
-    all_places = {place["id"]: place for place in [*countries.values(), *cities]}
-    aliases = build_alias_index(countries, cities)
+    AUDIT_DECISIONS = load_audit_decisions()
+    countries, admins, cities = parse_gazetteer()
+    all_places = {place["id"]: place for place in [*countries.values(), *admins, *cities]}
+    aliases = build_alias_index(countries, admins, cities)
     overrides = json.loads(OVERRIDES.read_text())
     model_manifest = json.loads(MODEL_MANIFEST.read_text()) if MODEL_MANIFEST.exists() else None
+    audit_manifest = json.loads(AUDIT_MANIFEST.read_text()) if AUDIT_MANIFEST.exists() else None
     override_places = {normalized(place["name"]): place for place in all_places.values()}
 
     articles = {}
@@ -444,32 +526,112 @@ def main():
             deduped[key] = item
     links = list(deduped.values())
 
+    audited_links = []
+    audit_stats = Counter()
+    for item in links:
+        audit = AUDIT_DECISIONS.get((item["article_id"], item["place_id"]))
+        if not audit:
+            audited_links.append(item)
+            continue
+        decision = audit["decision"]
+        verdict = decision["verdict"]
+        audit_stats[verdict] += 1
+        if verdict in {"same_name_nonplace", "wrong_place"}:
+            continue
+        reviewed = dict(item)
+        reviewed["audit_relevance"] = decision["relevance"]
+        reviewed["audit_reason"] = decision["reason"]
+        reviewed["classifier"] = f"{item['classifier']}+{audit['model']}:{audit['prompt_version']}"
+        reviewed["review_status"] = "model-audited"
+        reviewed["strength"] += int(float(decision["relevance"]) * 6)
+        if verdict == "ambiguous":
+            reviewed["tier"] = 4
+            reviewed["confidence"] = min(reviewed["confidence"], 0.5)
+        audited_links.append(reviewed)
+    links = audited_links
+
     direct_by_place = defaultdict(list)
     for item in links:
         direct_by_place[item["place_id"]].append(item)
 
+    admin_ids_by_country = defaultdict(list)
     city_ids_by_country = defaultdict(list)
+    city_ids_by_admin = defaultdict(list)
+    for admin in admins:
+        admin_ids_by_country[admin["country"]].append(admin["id"])
     for city in cities:
         city_ids_by_country[city["country"]].append(city["id"])
+        city_ids_by_admin[f"admin1:{city['country'].lower()}.{city['admin1'].lower()}"].append(city["id"])
+
+    def inherited(item, source_place_id, relation, tier, reason):
+        child = dict(item)
+        child["tier"] = max(tier, child["tier"])
+        child["relation"] = relation
+        child["reason"] = reason
+        child["source_place_id"] = source_place_id
+        return child
 
     results = {}
+    result_totals = {}
     for place_id, place in all_places.items():
         items = list(direct_by_place.get(place_id, []))
         if place["type"] == "country":
+            for admin_id in admin_ids_by_country[place["country"]]:
+                for item in direct_by_place.get(admin_id, []):
+                    if item["tier"] <= 2:
+                        items.append(inherited(
+                            item, admin_id, "contained", 2,
+                            f"About {all_places[admin_id]['name']}, in {place['name']}",
+                        ))
             for city_id in city_ids_by_country[place["country"]]:
                 for item in direct_by_place.get(city_id, []):
                     if item["tier"] <= 2:
-                        child = dict(item)
-                        child["tier"] = max(2, child["tier"])
-                        child["relation"] = "contained"
-                        child["reason"] = f"About {all_places[city_id]['name']}, in {place['name']}"
-                        child["source_place_id"] = city_id
-                        items.append(child)
+                        items.append(inherited(
+                            item, city_id, "contained", 2,
+                            f"About {all_places[city_id]['name']}, in {place['name']}",
+                        ))
+        elif place["type"] == "admin1":
+            for city_id in city_ids_by_admin[place_id]:
+                for item in direct_by_place.get(city_id, []):
+                    if item["tier"] <= 2:
+                        items.append(inherited(
+                            item, city_id, "contained", 2,
+                            f"About {all_places[city_id]['name']}, in {place['name']}",
+                        ))
+            if items:
+                country_id = f"country:{place['country'].lower()}"
+                broader = sorted(direct_by_place.get(country_id, []), key=lambda item: (item["tier"], -item["strength"]))
+                for item in broader[:10]:
+                    if item["tier"] <= 2:
+                        items.append(inherited(
+                            item, country_id, "broader", 3,
+                            f"About {all_places[country_id]['name']}, broader context for {place['name']}",
+                        ))
+        elif place["type"] == "city":
+            if items:
+                admin_id = f"admin1:{place['country'].lower()}.{place['admin1'].lower()}"
+                if admin_id in all_places:
+                    broader = sorted(direct_by_place.get(admin_id, []), key=lambda item: (item["tier"], -item["strength"]))
+                    for item in broader[:10]:
+                        if item["tier"] <= 2:
+                            items.append(inherited(
+                                item, admin_id, "broader", 3,
+                                f"About {all_places[admin_id]['name']}, broader context for {place['name']}",
+                            ))
+                country_id = f"country:{place['country'].lower()}"
+                broader = sorted(direct_by_place.get(country_id, []), key=lambda item: (item["tier"], -item["strength"]))
+                for item in broader[:8]:
+                    if item["tier"] <= 2:
+                        items.append(inherited(
+                            item, country_id, "broader", 4,
+                            f"About {all_places[country_id]['name']}, broader context for {place['name']}",
+                        ))
         items.sort(key=lambda item: (
-            item["tier"], -item["confidence"], -item["strength"],
+            item["tier"], -float(item.get("audit_relevance", 0)), -item["confidence"], -item["strength"],
             -int(articles.get(item["article_id"], {}).get("date", "0000-00-00").replace("-", "") or 0),
             item["article_id"],
         ))
+        result_totals[place_id] = len({item["article_id"] for item in items})
         seen_articles = set()
         compact = []
         for item in items:
@@ -479,6 +641,8 @@ def main():
             row = {key: item[key] for key in (
                 "article_id", "relation", "tier", "confidence", "reason", "category", "evidence", "review_status"
             )}
+            if "audit_relevance" in item:
+                row["auditRelevance"] = item["audit_relevance"]
             source_place = all_places.get(item.get("source_place_id", place_id), place)
             row["sourcePlace"] = {
                 "id": source_place["id"], "name": source_place["name"],
@@ -494,11 +658,21 @@ def main():
     compact_places = []
     for place in all_places.values():
         count = len(results.get(place["id"], []))
+        category_counts = Counter(item["category"] for item in results.get(place["id"], []))
+        if place["type"] == "city":
+            candidate_parent = f"admin1:{place['country'].lower()}.{place['admin1'].lower()}"
+            parent_id = candidate_parent if candidate_parent in all_places else f"country:{place['country'].lower()}"
+        elif place["type"] == "admin1":
+            parent_id = f"country:{place['country'].lower()}"
+        else:
+            parent_id = None
         compact_places.append({
             "id": place["id"], "name": place["name"], "ascii": place.get("ascii", place["name"]),
             "type": place["type"], "country": place["country"], "lat": place["lat"], "lon": place["lon"],
-            "adminName": place.get("adminName"),
+            "adminName": place.get("adminName"), "parentId": parent_id,
             "population": place["population"], "aliases": place["aliases"][:8], "resultCount": count,
+            "totalResultCount": result_totals.get(place["id"], 0),
+            "categoryCount": len(category_counts), "topCategory": category_counts.most_common(1)[0][0] if category_counts else None,
             "resultFile": f"/data/results/{place['id'].replace(':', '--')}.json" if count else None,
         })
     compact_places.sort(key=lambda place: (-bool(place["resultCount"]), -place["resultCount"], -place["population"], place["name"]))
@@ -536,17 +710,24 @@ def main():
                 "completed": model_manifest.get("completed") if model_manifest else len(MODEL_DECISIONS),
                 "actualCostUsd": model_manifest.get("actual_cost_usd") if model_manifest else None,
             } if MODEL_RUN.exists() else None,
+            "topPlaceAudit": {
+                "path": str(AUDIT_RUN), "sha256": sha256(AUDIT_RUN),
+                "model": audit_manifest.get("model") if audit_manifest else None,
+                "promptVersion": audit_manifest.get("prompt_version") if audit_manifest else None,
+                "completed": audit_manifest.get("completed") if audit_manifest else len(AUDIT_DECISIONS),
+                "actualCostUsd": audit_manifest.get("actual_cost_usd") if audit_manifest else None,
+            } if AUDIT_RUN.exists() else None,
         },
         "counts": {
             "corpusArticles": len(ledger), "displayArticles": len(articles), "places": len(compact_places),
-            "placesWithResults": len(results), "articlePlaceLinks": len(links), **stats,
+            "placesWithResults": len(results), "articlePlaceLinks": len(links), "audit": dict(audit_stats), **stats,
         },
         "thresholds": {"maxResultsPerPlace": MAX_RESULTS_PER_PLACE, "supportedCities": "GeoNames cities15000"},
         "outputs": {},
         "knownGaps": [
             "Indirect entity-place relations remain candidate data pending a separate reviewed enrichment pass.",
             "Multi-item link roundups are classified at post level, not item level.",
-            "Regions, neighborhoods, landmarks, and exact addresses are not yet in the local gazetteer.",
+            "Neighborhoods, landmarks, and exact addresses are not yet in the local gazetteer.",
             "The canonical corpus ends 2026-07-12 and needs an incremental refresh.",
         ],
     }

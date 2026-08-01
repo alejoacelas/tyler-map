@@ -7,7 +7,7 @@ The ledgers preserve every decision. `data/classification-ledger.jsonl` has one 
 
 - The source corpus ends 2026-07-12. New posts need an incremental crawl and the same passes.
 - Link roundups are indexed at article level. A city mentioned in one outbound item can inherit the roundup title and date; item-level segmentation remains future work.
-- GeoNames `cities15000` covers countries, capitals, and cities above roughly 15,000 people. Regions, neighborhoods, landmarks, and smaller settlements can be typed, but resolve only when the containing supported city occurs in the query.
+- GeoNames covers countries, first-level regions, capitals, and cities above roughly 15,000 people. Region points are population-weighted city centroids. Neighborhoods, landmarks, and smaller settlements are not yet independent search targets.
 - Exact addresses are not geocoded. A query containing a supported city resolves to that city; the interface does not claim an exact pin.
 - Model-extracted people, books, institutions, organizations, and events remain candidate data. No inferred entity–place edge is published without a source-backed enrichment review.
 - Country demonyms are validated from a small explicit list. Unlisted demonyms remain unclassified instead of being guessed.
@@ -19,6 +19,7 @@ The ledgers preserve every decision. `data/classification-ledger.jsonl` has one 
 - Ambiguous names need stronger context. `Jordan` attached to a person, `Georgia Tech`, lowercase `turkey`, and short common-word city aliases are rejected.
 - Model candidates fail closed when their quoted evidence is absent, their place name cannot resolve to GeoNames, the evidence names neither the place nor an accepted demonym, centrality is below 0.55, or the relation is incidental.
 - Validated model edges start at tier 3 and cannot outrank title or repeated-body evidence.
+- The top-place audit covers 100 locations and ten direct edges per location. Lower-volume deterministic edges remain unaudited unless a rule or regression case excludes them.
 
 ## What to measure next
 

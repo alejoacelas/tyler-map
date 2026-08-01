@@ -8,8 +8,8 @@ Resolve a location first. Rank articles only after the location has a stable ID,
 ## Relation tiers
 
 1. `subject`: the article title names the place, or the article repeatedly discusses it.
-2. `contained`: the article is about a city inside the selected country.
-3. `indirect`: a work, person, institution, or historical event has a strong place tie.
+2. `contained`: the article is about a city or first-level region inside the selected place.
+3. `indirect` or `broader`: a sourced place tie, or a country/region article shown beneath a more specific place.
 4. `mention`: one explicit reference with no stronger evidence.
 
 Distance ranks points within a metro area. Containment ranks countries and regions. A fabricated centroid never turns a country-wide relation into a precise pin.
@@ -27,6 +27,8 @@ Ambiguous names require one of:
 
 Common-word city aliases under four characters are ignored. A single mention in a link roundup stays `mention` and cannot outrank direct writing.
 
+One-word city or region aliases next to another capitalized name are treated as people, not places, unless the article supplies a country cue. This excludes matches such as Carlos Ocaña. Ambiguous common words such as “tame” need explicit geographic syntax and repeated geographic context.
+
 ## OpenRouter passes
 
 1. Sample the same 120 records across years, lengths, titles, and deterministic states with Gemini 2.5 Flash Lite, GPT-4.1 Nano, and DeepSeek V3.2.
@@ -35,6 +37,8 @@ Common-word city aliases under four characters are ignored. A single mention in 
 4. Accept a direct place candidate only when its evidence occurs in the supplied text and its name resolves to one GeoNames ID. Deduplicate it and leave it `validated-unreviewed` at tier 3.
 5. Preserve person, work, institution, organization, and event candidates for a later search-backed enrichment pass. Do not publish inferred place ties without a source URL and excerpt.
 6. Stop the run when the provider omits actual cost or the cumulative cap is reached. Never spend toward a fixed budget merely because it is available.
+
+The top-place audit then reviews the ten strongest direct edges for each of the 100 highest-volume places with Gemini 2.5 Flash. `same_name_nonplace` and `wrong_place` verdicts remove an edge; `ambiguous` moves it to tier 4; correct-edge relevance helps order otherwise similar results. The run is resumable and retains its prompt hash, input hashes, response IDs, usage, actual cost, and failures in `data/model-runs/top-place-audit-v1/`.
 
 Every relation records classifier version, model, prompt hash, evidence, confidence, and review state. Every request records input/output tokens and actual provider cost from the OpenRouter usage object.
 

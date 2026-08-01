@@ -44,19 +44,24 @@ Literal review candidates:
 
 ## Tokyo
 
-Resolved to `geonames:1850147` (Tokyo, JP); 120 served results; 7 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:1850147` (Tokyo, JP); 115 served results; 7 literal title matches; 2 literal matches absent from the first 30.
 
 Atlas top five:
 
-- My Tokyo advice for Scott Sumner — Title names Tokyo
 - My first trip to Tokyo — Title names Tokyo
-- Is Tokyo really a YIMBY success story? — Title names Tokyo
 - Franco Purini on Tokyo — Title names Tokyo
 - Ben Casnocha on food procedures in Tokyo — Title names Tokyo
+- Tokyo hotel bleg — Title names Tokyo
+- Tokyo impressions — Title names Tokyo
+
+Literal review candidates:
+
+- My Tokyo advice for Scott Sumner
+- Is Tokyo really a YIMBY success story?
 
 ## Mexico City
 
-Resolved to `geonames:3530597` (Mexico City, MX); 71 served results; 6 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:3530597` (Mexico City, MX); 76 served results; 6 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
@@ -68,7 +73,7 @@ Atlas top five:
 
 ## Istanbul
 
-Resolved to `geonames:745044` (Istanbul, TR); 41 served results; 4 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:745044` (Istanbul, TR); 46 served results; 4 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
@@ -86,13 +91,13 @@ Atlas top five:
 
 - Cultural divergence in north and south Vietnam — Title names Vietnam
 - Vietnam, trade, and poverty alleviation — Title names Vietnam
-- The Vietnam War and racial integration — Title names Vietnam
 - We’ve had a version of ISDS with Vietnam since 2001 — Title names Vietnam
 - The Vietnam War was worse than most people think — Title names Vietnam
+- The polity that is Vietnam — Title names Vietnam
 
 ## Lagos
 
-Resolved to `geonames:2332459` (Lagos, NG); 41 served results; 4 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `admin1:ng.05` (Lagos, NG); 45 served results; 4 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
@@ -104,15 +109,19 @@ Atlas top five:
 
 ## Tbilisi
 
-Resolved to `geonames:611717` (Tbilisi, GE); 1 served results; 0 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:611717` (Tbilisi, GE); 5 served results; 0 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
-- What’s the opposite of antitrust policy? — Mentions Tbilisi
+- My favorite things Georgia — About Georgia, broader context for Tbilisi
+- The nuclear polity that is Georgia — About Georgia, broader context for Tbilisi
+- A new school of regulatory economics the culture that is Georgia — About Georgia, broader context for Tbilisi
+- My favorite things Georgian — About Georgia, broader context for Tbilisi
+- What’s the opposite of antitrust policy? — About Georgia, broader context for Tbilisi
 
 ## Buenos Aires
 
-Resolved to `geonames:3435910` (Buenos Aires, AR); 53 served results; 3 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:3435910` (Buenos Aires, AR); 60 served results; 3 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
@@ -124,32 +133,35 @@ Atlas top five:
 
 ## Reykjavik
 
-Resolved to `geonames:3413829` (Reykjavík, IS); 5 served results; 0 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:3413829` (Reykjavík, IS); 11 served results; 0 literal title matches; 0 literal matches absent from the first 30.
 
 Atlas top five:
 
 - The portfolio approach — Discusses Reykjavík 2 times
-- Boris Spassky, RIP — Mentions Reykjavík
-- Notes from Iceland — Mentions Reykjavík
-- McDonald’s pulls out of Iceland — Mentions Reykjavík
-- Not a joke — Mentions Reykjavík
+- My favorite things Iceland — About Iceland, broader context for Reykjavík
+- Did Iceland reject fiscal austerity? — About Iceland, broader context for Reykjavík
+- Should Iceland abolish fractional reserve banking? — About Iceland, broader context for Reykjavík
+- The culture (polity) that is Iceland (jólabókaflóð) — About Iceland, broader context for Reykjavík
 
 ## Georgia
 
-Resolved to `country:ge` (Georgia, GE); 13 served results; 6 literal title matches; 2 literal matches absent from the first 30.
+Resolved to `admin1:us.ga` (Georgia, US); 29 served results; 6 literal title matches; 5 literal matches absent from the first 30.
 
 Atlas top five:
 
-- My favorite things Georgia — Title names Georgia
-- The nuclear polity that is Georgia — Title names Georgia
-- A new school of regulatory economics the culture that is Georgia — Title names Georgia
-- My favorite things Georgian — Discusses Georgia 3 times
-- What’s the opposite of antitrust policy? — Discusses Georgia 4 times
+- Privatization in Sandy Springs, Georgia — About Sandy Springs, in Georgia
+- *Levant* (Smyrna, Alexandria, and Beirut) — About Smyrna, in Georgia
+- Atlanta bleg — About Atlanta, in Georgia
+- The substitution of capital for labor, charity edition, seen in Atlanta — About Atlanta, in Georgia
+- Should everyone crowd into New York and San Francisco? — About Atlanta, in Georgia
 
 Literal review candidates:
 
-- Privatization in Sandy Springs, Georgia
+- My favorite things Georgian
+- My favorite things Georgia
+- A new school of regulatory economics the culture that is Georgia
 - The Georgia Tech online program is going pretty well
+- The nuclear polity that is Georgia
 
 ## Jordan
 
@@ -171,19 +183,19 @@ Literal review candidates:
 
 ## Paris
 
-Resolved to `geonames:2988507` (Paris, FR); 37 served results; 23 literal title matches; 10 literal matches absent from the first 30.
+Resolved to `geonames:2988507` (Paris, FR); 120 served results; 23 literal title matches; 13 literal matches absent from the first 30.
 
 Atlas top five:
 
 - My advice for a Paris visit — Title names Paris
 - Paris advice — Title names Paris
-- My Paris delta — Title names Paris
 - Is Paris the best place to eat in France? — Title names Paris
 - Paris fact of the day — Title names Paris
+- How has Paris changed — Title names Paris
 
 Literal review candidates:
 
-- Parisian puzzles
+- Markets in everything, Paris Hilton edition
 - The Paris School of Economics
 - Parisian women and behavioral economics
 - *Race Against the Machine* and TGS, a comparison
@@ -191,12 +203,20 @@ Literal review candidates:
 
 ## San Francisco
 
-Resolved to `geonames:5391959` (San Francisco, US); 120 served results; 23 literal title matches; 0 literal matches absent from the first 30.
+Resolved to `geonames:5391959` (San Francisco, US); 90 served results; 23 literal title matches; 21 literal matches absent from the first 30.
 
 Atlas top five:
 
-- The culture that is San Francisco — Title names San Francisco
 - There is a lot wrong with this rant about San Francisco — Title names San Francisco
-- The progressive closure of San Francisco — Title names San Francisco
-- San Francisco fact of the day — Title names San Francisco
-- San Francisco fact of the day — Title names San Francisco
+- San Francisco substitution the rent is too damn high — Title names San Francisco
+- My excellent Conversation with the excellent Stewart Brand — Discusses San Francisco 5 times
+- Wokeism has peaked — Discusses San Francisco 3 times
+- Sam Altman and the fear of political correctness — Discusses San Francisco 2 times
+
+Literal review candidates:
+
+- I have one dinner in San Francisco
+- The progressive closure of San Francisco
+- The culinary culture that is San Francisco
+- Should everyone crowd into New York and San Francisco?
+- Peak San Francisco?
