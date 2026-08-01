@@ -69,6 +69,15 @@ button { color: inherit; }
 .map-legend small { color: var(--ink-soft); font-size: 7px; }
 .maplibregl-popup-content { padding: 9px 11px !important; border-radius: 0 !important; background: var(--paper) !important; color: var(--ink) !important; font: 12px/1.3 Georgia, serif; box-shadow: 0 7px 20px rgba(24,49,43,.2) !important; }
 .maplibregl-popup-content span { color: var(--ink-soft); font: 8px/1.3 var(--font-mono), monospace; text-transform: uppercase; }
+.atlas-map-marker, .result-map-marker { display: grid; place-items: center; border-radius: 50%; cursor: pointer; }
+.atlas-map-marker { width: var(--marker-size); height: var(--marker-size); border: 2px solid var(--paper); padding: 0; background: var(--sage); box-shadow: 0 2px 8px rgba(24,49,43,.28); color: var(--paper); font: 8px/1 var(--font-mono), monospace; transition: transform .14s, box-shadow .14s; }
+.atlas-map-marker:hover, .atlas-map-marker:focus-visible { z-index: 2; outline: 0; transform: scale(1.16); box-shadow: 0 3px 12px rgba(24,49,43,.38); }
+.atlas-map-marker.cluster { border-width: 2px; background: var(--ink); }
+.atlas-map-marker.variety-2, .atlas-map-marker.variety-3 { background: #c0894f; }
+.atlas-map-marker.variety-4 { background: var(--rust); }
+.atlas-map-marker.selected { border: 4px solid var(--ink); box-shadow: 0 0 0 3px var(--paper), 0 3px 14px rgba(24,49,43,.4); }
+.result-map-marker { width: 30px; height: 30px; border: 2px solid var(--rust); padding: 0; background: var(--paper); color: var(--rust); box-shadow: 0 2px 8px rgba(24,49,43,.2); font: 10px/1 var(--font-mono), monospace; }
+.result-map-marker.active { background: var(--rust); color: var(--paper); }
 .maplibregl-ctrl-group { border-radius: 0 !important; background: var(--paper) !important; }
 .maplibregl-ctrl-attrib { color: var(--ink-soft) !important; background: rgba(243,239,227,.84) !important; }
 

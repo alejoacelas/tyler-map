@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as maplibregl from "maplibre-gl";
-import type { GeoJSONSource, Map } from "maplibre-gl";
+import type { Map, Marker } from "maplibre-gl";
+import Supercluster from "supercluster";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 type Place = {
@@ -10,6 +11,8 @@ type Place = {
   totalResultCount: number; categoryCount: number; topCategory: string | null; resultFile: string | null;
 };
 type Result = { article_id: string; sourcePlace: Pick<Place, "id" | "name" | "type" | "lat" | "lon"> };
+type PointProperties = { placeId: string; name: string; count: number; variety: number };
+type ClusterProperties = { readings: number };
 
 const style = {
   version: 8 as const,
@@ -22,121 +25,150 @@ const style = {
   ],
 };
 
+function compactCount(value: number) {
+  return value >= 1000 ? `${Math.round(value / 100) / 10}k` : String(value);
+}
+
 export function MapPanel({ place, places, results, activeResult, onSelectResult, onSelectPlace }: {
   place: Place | null; places: Place[]; results: Result[]; activeResult: number;
   onSelectResult: (index: number) => void; onSelectPlace: (place: Place) => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
+  const coverageMarkers = useRef<Marker[]>([]);
+  const resultMarkers = useRef<Marker[]>([]);
+  const clusterIndex = useRef<Supercluster<PointProperties, ClusterProperties> | null>(null);
   const placeById = useRef(new Map<string, Place>());
+  const selectedPlace = useRef(place);
   const callbacks = useRef({ onSelectResult, onSelectPlace });
-  const [ready, setReady] = useState(false);
+  const renderCoverage = useRef<() => void>(() => undefined);
 
+  useEffect(() => { selectedPlace.current = place; }, [place]);
   useEffect(() => { callbacks.current = { onSelectResult, onSelectPlace }; }, [onSelectResult, onSelectPlace]);
-  useEffect(() => { placeById.current = new Map(places.map((item) => [item.id, item])); }, [places]);
+
+  useEffect(() => {
+    placeById.current = new Map(places.map((item) => [item.id, item]));
+    const points: Array<Supercluster.PointFeature<PointProperties>> = places.filter((item) => item.resultFile && item.totalResultCount > 0).map((item) => ({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [item.lon, item.lat] },
+      properties: { placeId: item.id, name: item.name, count: item.totalResultCount, variety: item.categoryCount },
+    }));
+    clusterIndex.current = new Supercluster<PointProperties, ClusterProperties>({
+      radius: 46, maxZoom: 8,
+      map: (properties) => ({ readings: properties.count }),
+      reduce: (accumulated, properties) => { accumulated.readings += properties.readings; },
+    }).load(points);
+    renderCoverage.current();
+  }, [places]);
 
   useEffect(() => {
     if (!container.current || mapRef.current) return;
     const map = new maplibregl.Map({ container: container.current, style, center: [8, 24], zoom: 1.35, minZoom: 1, attributionControl: false });
+    mapRef.current = map;
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-left");
-    map.on("load", () => {
-      map.addSource("atlas-places", {
-        type: "geojson", data: { type: "FeatureCollection", features: [] }, cluster: true, clusterRadius: 42, clusterMaxZoom: 7,
-        clusterProperties: { content: ["+", ["get", "count"]] },
-      });
-      map.addLayer({ id: "place-clusters", type: "circle", source: "atlas-places", filter: ["has", "point_count"], paint: {
-        "circle-color": "#18312b", "circle-opacity": 0.88,
-        "circle-radius": ["interpolate", ["linear"], ["coalesce", ["get", "content"], ["get", "point_count"]], 1, 15, 25, 20, 100, 27, 500, 36],
-        "circle-stroke-width": 2, "circle-stroke-color": "#f3efe3",
-      } });
-      map.addLayer({ id: "cluster-label", type: "symbol", source: "atlas-places", filter: ["has", "point_count"], layout: {
-        "text-field": ["number-format", ["coalesce", ["get", "content"], ["get", "point_count"]], { "min-fraction-digits": 0, "max-fraction-digits": 0 }], "text-size": 10,
-      }, paint: { "text-color": "#f3efe3" } });
-      map.addLayer({ id: "place-points", type: "circle", source: "atlas-places", filter: ["!", ["has", "point_count"]], paint: {
-        "circle-color": ["step", ["get", "variety"], "#91a596", 2, "#c0894f", 4, "#9f4a32"],
-        "circle-radius": ["interpolate", ["linear"], ["sqrt", ["get", "count"]], 1, 5, 4, 8, 11, 13, 25, 20],
-        "circle-opacity": 0.86, "circle-stroke-width": 1.5, "circle-stroke-color": "#f3efe3",
-      } });
-      map.addLayer({ id: "selected-place", type: "circle", source: "atlas-places", filter: ["==", ["get", "id"], ""], paint: {
-        "circle-radius": ["interpolate", ["linear"], ["sqrt", ["get", "count"]], 1, 10, 25, 25],
-        "circle-color": "rgba(0,0,0,0)", "circle-stroke-width": 4, "circle-stroke-color": "#18312b",
-      } });
-      map.addSource("results", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
-      map.addLayer({ id: "result-halo", type: "circle", source: "results", paint: { "circle-radius": 15, "circle-color": "#f4f0e5", "circle-stroke-color": "#9f4a32", "circle-stroke-width": 2 } });
-      map.addLayer({ id: "result-label", type: "symbol", source: "results", layout: { "text-field": ["get", "rank"], "text-size": 11 }, paint: { "text-color": "#7e3423" } });
 
-      map.on("click", "place-clusters", async (event) => {
-        const feature = event.features?.[0];
-        const clusterId = Number(feature?.properties?.cluster_id);
-        const source = map.getSource("atlas-places") as GeoJSONSource;
-        if (!feature || !Number.isFinite(clusterId)) return;
-        const zoom = await source.getClusterExpansionZoom(clusterId);
-        map.easeTo({ center: (feature.geometry as GeoJSON.Point).coordinates as [number, number], zoom });
+    const drawCoverage = () => {
+      const index = clusterIndex.current;
+      if (!index) return;
+      coverageMarkers.current.forEach((marker) => marker.remove());
+      coverageMarkers.current = [];
+      const bounds = map.getBounds();
+      const south = Math.max(-85, bounds.getSouth());
+      const north = Math.min(85, bounds.getNorth());
+      const span = bounds.getEast() - bounds.getWest();
+      const normalizeLon = (longitude: number) => ((longitude + 180) % 360 + 360) % 360 - 180;
+      const west = normalizeLon(bounds.getWest());
+      const east = normalizeLon(bounds.getEast());
+      const boxes: GeoJSON.BBox[] = span >= 360
+        ? [[-180, south, 180, north]]
+        : west <= east ? [[west, south, east, north]] : [[west, south, 180, north], [-180, south, east, north]];
+      const zoom = Math.max(0, Math.min(16, Math.floor(map.getZoom())));
+      const features = boxes.flatMap((bbox) => index.getClusters(bbox, zoom));
+      coverageMarkers.current = features.map((feature) => {
+        const isCluster = Boolean("cluster" in feature.properties && feature.properties.cluster);
+        const readings = isCluster ? feature.properties.readings : feature.properties.count;
+        const placesCount = isCluster ? feature.properties.point_count : 1;
+        const sizeMetric = isCluster ? placesCount : readings;
+        const size = Math.max(13, Math.min(30, 10 + Math.sqrt(sizeMetric) * 0.9));
+        const element = document.createElement("button");
+        element.type = "button";
+        element.className = isCluster ? "atlas-map-marker cluster" : `atlas-map-marker point variety-${Math.min(4, feature.properties.variety || 1)}`;
+        element.style.setProperty("--marker-size", `${size}px`);
+        element.textContent = isCluster ? compactCount(placesCount) : "";
+        element.title = isCluster
+          ? `${placesCount.toLocaleString()} places · ${readings.toLocaleString()} readings`
+          : `${feature.properties.name} · ${readings.toLocaleString()} readings`;
+        element.setAttribute("aria-label", element.title);
+        if (!isCluster && feature.properties.placeId === selectedPlace.current?.id) element.classList.add("selected");
+        if (!isCluster) element.dataset.placeId = feature.properties.placeId;
+        element.addEventListener("click", (event) => {
+          event.stopPropagation();
+          if (isCluster) {
+            map.easeTo({ center: feature.geometry.coordinates as [number, number], zoom: index.getClusterExpansionZoom(feature.properties.cluster_id) });
+          } else {
+            const next = placeById.current.get(feature.properties.placeId);
+            if (next) callbacks.current.onSelectPlace(next);
+          }
+        });
+        return new maplibregl.Marker({ element }).setLngLat(feature.geometry.coordinates as [number, number]).addTo(map);
       });
-      map.on("click", "place-points", (event) => {
-        const id = String(event.features?.[0]?.properties?.id || "");
-        const next = placeById.current.get(id);
-        if (next) callbacks.current.onSelectPlace(next);
-      });
-      map.on("click", "result-halo", (event) => {
-        const index = Number(event.features?.[0]?.properties?.index);
-        if (Number.isFinite(index)) callbacks.current.onSelectResult(index);
-      });
-      const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
-      map.on("mousemove", "place-points", (event) => {
-        map.getCanvas().style.cursor = "pointer";
-        const feature = event.features?.[0];
-        if (!feature || feature.geometry.type !== "Point") return;
-        const { name, count, variety } = feature.properties || {};
-        popup.setLngLat(feature.geometry.coordinates as [number, number]).setHTML(`<strong>${name}</strong><br><span>${count} readings · ${variety} ${Number(variety) === 1 ? "kind" : "kinds"}</span>`).addTo(map);
-      });
-      map.on("mouseleave", "place-points", () => { map.getCanvas().style.cursor = ""; popup.remove(); });
-      for (const layer of ["place-clusters", "result-halo"]) {
-        map.on("mouseenter", layer, () => { map.getCanvas().style.cursor = "pointer"; });
-        map.on("mouseleave", layer, () => { map.getCanvas().style.cursor = ""; });
-      }
-      setReady(true);
+    };
+
+    renderCoverage.current = drawCoverage;
+    map.on("load", drawCoverage);
+    map.on("moveend", drawCoverage);
+    const resizeObserver = new ResizeObserver(() => {
+      if (!container.current?.clientWidth || !container.current.clientHeight) return;
+      map.resize();
+      drawCoverage();
     });
-    mapRef.current = map;
-    return () => { mapRef.current?.remove(); mapRef.current = null; };
+    resizeObserver.observe(container.current);
+    return () => {
+      resizeObserver.disconnect();
+      coverageMarkers.current.forEach((marker) => marker.remove());
+      resultMarkers.current.forEach((marker) => marker.remove());
+      renderCoverage.current = () => undefined;
+      map.remove();
+      if (mapRef.current === map) mapRef.current = null;
+    };
   }, []);
 
   useEffect(() => {
+    renderCoverage.current();
     const map = mapRef.current;
-    if (!map || !ready) return;
-    const features = places.filter((item) => item.resultFile && item.totalResultCount > 0).map((item) => ({
-      type: "Feature" as const,
-      geometry: { type: "Point" as const, coordinates: [item.lon, item.lat] },
-      properties: { id: item.id, name: item.name, count: item.totalResultCount, variety: item.categoryCount, category: item.topCategory || "places" },
-    }));
-    (map.getSource("atlas-places") as GeoJSONSource).setData({ type: "FeatureCollection", features });
-  }, [places, ready]);
+    if (map && place) map.flyTo({ center: [place.lon, place.lat], zoom: place.type === "country" ? 3.2 : place.type === "admin1" ? 5.5 : 8.5, duration: 900, essential: true });
+  }, [place]);
 
   useEffect(() => {
+    resultMarkers.current.forEach((marker) => marker.remove());
+    resultMarkers.current = [];
     const map = mapRef.current;
-    if (!map || !ready) return;
+    if (!map) return;
     const seen = new Set<string>();
-    const features = results.flatMap((result, index) => {
+    resultMarkers.current = results.flatMap((result, index) => {
       if (result.sourcePlace.type !== "city" || seen.has(result.sourcePlace.id)) return [];
       seen.add(result.sourcePlace.id);
-      return [{ type: "Feature" as const, geometry: { type: "Point" as const, coordinates: [result.sourcePlace.lon, result.sourcePlace.lat] }, properties: { index, rank: String(index + 1), name: result.sourcePlace.name } }];
+      const element = document.createElement("button");
+      element.type = "button";
+      element.className = `result-map-marker${index === activeResult ? " active" : ""}`;
+      element.textContent = String(index + 1);
+      element.title = result.sourcePlace.name;
+      element.addEventListener("click", (event) => { event.stopPropagation(); callbacks.current.onSelectResult(index); });
+      return [new maplibregl.Marker({ element }).setLngLat([result.sourcePlace.lon, result.sourcePlace.lat]).addTo(map)];
     });
-    (map.getSource("results") as GeoJSONSource).setData({ type: "FeatureCollection", features });
-    map.setFilter("selected-place", ["==", ["get", "id"], place?.id || ""]);
-    if (place) map.flyTo({ center: [place.lon, place.lat], zoom: place.type === "country" ? 3.2 : place.type === "admin1" ? 5.5 : 8.5, duration: 900, essential: true });
-  }, [place, results, ready]);
+  }, [results, activeResult]);
 
   useEffect(() => {
     const map = mapRef.current;
     const result = results[activeResult];
-    if (!map || !ready || !result || result.sourcePlace.type !== "city") return;
+    if (!map || !result || result.sourcePlace.type !== "city") return;
     map.easeTo({ center: [result.sourcePlace.lon, result.sourcePlace.lat], duration: 500 });
-  }, [activeResult, results, ready]);
+  }, [activeResult, results]);
 
   return <aside className="map-panel" aria-label="Atlas map">
     <div ref={container} className="map-canvas" />
-    <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Circle size shows readings"}</small></div>
-    <div className="map-legend"><strong>Atlas coverage</strong><span><i className="low" />1 kind</span><span><i className="mid" />2–3 kinds</span><span><i className="high" />4+ kinds</span><small>Circle size = number of readings</small></div>
+    <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dots show readings · clusters show places"}</small></div>
+    <div className="map-legend"><strong>Atlas coverage</strong><span><i className="low" />1 kind</span><span><i className="mid" />2–3 kinds</span><span><i className="high" />4+ kinds</span><small>Dots scale by readings · clusters show locations</small></div>
   </aside>;
 }

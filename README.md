@@ -9,6 +9,7 @@ Search or select a place, then read Tyler Cowen’s writing about it. Countries,
 - `public/data/`: the derived place index served by the site.
 - `data/`: manual overrides and review data.
 - `reproduce/`: the classification method, scripts, source lineage, checks, and gaps.
+- [`technical-decisions.md`](technical-decisions.md): one overview of corpus acquisition, cleaning, place resolution, model audits, hierarchy, ranking, interface, and remaining gaps.
 
 The canonical article corpus remains in `../2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl`. This project derives links from it; it does not fork or rewrite it.
 
