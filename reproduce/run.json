@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "place-index-v1",
+  "createdAt": "2026-08-01T16:42:50.286191+00:00",
+  "inputs": {
+    "corpus": {
+      "path": "/Users/alejo/best/work/once/2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl",
+      "sha256": "2e0b2e3b192750b0479730cd0aa56933d3472095cb836a6ec2d2b68caf13306a"
+    },
+    "cities15000": {
+      "sha256": "cc844f366fdd710ebdc2b343278c97809b073f7e0d6ab2f145ab315aae58cc5d",
+      "license": "CC BY 4.0"
+    },
+    "countryInfo": {
+      "sha256": "93bafc525813f22e4711ff9ed6d626343094ce48c26388dc7c49189b3d7d5512",
+      "license": "CC BY 4.0"
+    },
+    "admin1CodesASCII": {
+      "sha256": "34784457b76b988a669dff7c3e4b104e4902c0875643cff019281ac79dfa2992",
+      "license": "CC BY 4.0"
+    },
+    "curatedOverrides": {
+      "sha256": "1c3a0f00f38252b9b7d53d5c916af895675a18b6dc88b6ace38d6580dabc285c"
+    },
+    "modelRun": {
+      "path": "/Users/alejo/best/work/once/2026-08-tyler-cowen-map/data/model-runs/unclassified-flash-lite-v2/decisions.jsonl",
+      "sha256": "1ddca03dfd7683aaa78b48257bb5aeccf3579b381d28fe2e61e1206af317ba87",
+      "model": "google/gemini-2.5-flash-lite",
+      "promptVersion": "geo-pilot-v2",
+      "completed": 14562,
+      "actualCostUsd": 2.347905809999989
+    }
+  },
+  "counts": {
+    "corpusArticles": 34345,
+    "displayArticles": 20476,
+    "places": 34317,
+    "placesWithResults": 2200,
+    "articlePlaceLinks": 44257,
+    "classified": 19660,
+    "body:usable": 33404,
+    "unclassified": 13869,
+    "body:short": 794,
+    "model_classified": 816,
+    "body:empty_or_residue": 147
+  },
+  "thresholds": {
+    "maxResultsPerPlace": 120,
+    "supportedCities": "GeoNames cities15000"
+  },
+  "outputs": {
+    "public/data/places.json": {
+      "sha256": "b2d65f35ae0363cae3cc787bae690733345ce22d60beda39e74bd022d0ebe2aa",
+      "bytes": 7941613
+    },
+    "data/article-place-links.jsonl": {
+      "sha256": "7054d545e382e9438c9cac85ee0d41d10908b4988fe49a2c29624074430a9084",
+      "bytes": 24187434
+    },
+    "data/classification-ledger.jsonl": {
+      "sha256": "b9ef89954f785124a0dd300d4287225af3efa5a1c3383a088c09451a28654617",
+      "bytes": 5984052
+    },
+    "public/data/results/": {
+      "files": 2200,
+      "bytes": 29202540
+    }
+  },
+  "knownGaps": [
+    "Indirect entity-place relations remain candidate data pending a separate reviewed enrichment pass.",
+    "Multi-item link roundups are classified at post level, not item level.",
+    "Regions, neighborhoods, landmarks, and exact addresses are not yet in the local gazetteer.",
+    "The canonical corpus ends 2026-07-12 and needs an incremental refresh."
+  ]
+}

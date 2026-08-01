@@ -1,0 +1,19 @@
+[
+  {"query":"Turkey","type":"country","must_include_title_term":"Turkey"},
+  {"query":"Türkiye","type":"country","canonical":"Turkey"},
+  {"query":"Istanbul","type":"city","country":"TR"},
+  {"query":"France","type":"country","must_have_results":true},
+  {"query":"Paris","type":"city","country":"FR"},
+  {"query":"Vietnam","type":"country","must_have_results":true},
+  {"query":"Saigon","type":"city","canonical":"Ho Chi Minh City"},
+  {"query":"São Paulo","type":"city","country":"BR"},
+  {"query":"Mexico City","type":"city","country":"MX"},
+  {"query":"Tokyo","type":"city","country":"JP"},
+  {"query":"Georgia","type":"country","canonical":"Georgia"},
+  {"query":"Georgia, United States","type":"unsupported-region"},
+  {"query":"Jordan","type":"country","canonical":"Jordan"},
+  {"query":"Reading","type":"city","country":"GB"},
+  {"query":"Nice","type":"city","country":"FR"},
+  {"query":"Daron Acemoglu","type":"article-association","canonical":"Turkey"},
+  {"query":"Wakanda","type":"no-result"}
+]

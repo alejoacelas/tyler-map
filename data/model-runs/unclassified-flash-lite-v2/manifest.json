@@ -1,0 +1,17 @@
+{
+  "run_id": "unclassified-flash-lite-v2",
+  "prompt_version": "geo-pilot-v2",
+  "prompt_sha256": "db989abcc66a8e1315155d59adc7e4c139702c2ca82ef63b94c43a4c9895c245",
+  "model": "google/gemini-2.5-flash-lite",
+  "state_filter": "unclassified",
+  "concurrency": 2,
+  "max_output_tokens": 5000,
+  "sample_size": 14479,
+  "completed": 14562,
+  "failed": 0,
+  "attempted_failures": 0,
+  "actual_cost_usd": 2.347905809999989,
+  "max_cost_usd": 20,
+  "corpus_sha256": "2e0b2e3b192750b0479730cd0aa56933d3472095cb836a6ec2d2b68caf13306a",
+  "created_at": "2026-08-01T16:36:51.412Z"
+}

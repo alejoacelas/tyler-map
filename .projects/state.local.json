@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "project": {
+    "initializedAt": "2026-08-01T16:02:56.111Z",
+    "merchantDisplayName": "Cliver",
+    "merchantId": "acct_1TMDwH9cODHbqLki",
+    "projectId": "project_61V93KY8yw92mM09816UVbtd8SSQplWylVOriQ0e842i",
+    "projectName": "2026-08-tyler-cowen-map"
+  },
+  "providers": {
+    "openrouter": {
+      "accountRequestId": "facctrq_61V93L4MedOgusKcb16UVbtd8SSQplWylVOriQ0e88HA",
+      "configuration": {},
+      "linkedAt": "2026-08-01T16:03:27.532Z",
+      "providerId": "prvdr_61URImmFACEuDHEx651IO",
+      "providerName": "OpenRouter",
+      "redirectUrl": null,
+      "requestedAt": "2026-08-01T16:03:27.531Z",
+      "status": "complete"
+    }
+  },
+  "resources": {
+    "openrouter": {
+      "configuration": {},
+      "createdAt": "2026-08-01T16:03:44.670Z",
+      "lastRevealedAt": "2026-08-01T16:03:44.870Z",
+      "lastStatus": "complete",
+      "name": "openrouter",
+      "providerId": "prvdr_61URImmFACEuDHEx651IO",
+      "providerName": "OpenRouter",
+      "resourceId": "fres_61V93LLjZYNtEX7Yr16UVbtd8SSQplWylVOriQ0e82lE",
+      "serviceId": "api"
+    },
+    "openrouter-plan": {
+      "configuration": {},
+      "createdAt": "2026-08-01T16:03:36.285Z",
+      "lastRevealedAt": "2026-08-01T16:03:36.829Z",
+      "lastStatus": "complete",
+      "name": "openrouter-plan",
+      "providerId": "prvdr_61URImmFACEuDHEx651IO",
+      "providerName": "OpenRouter",
+      "resourceId": "fres_61V93L6u7lAFgOK7W16UVbtd8SSQplWylVOriQ0e89AW",
+      "serviceId": "pay_as_you_go"
+    }
+  }
+}

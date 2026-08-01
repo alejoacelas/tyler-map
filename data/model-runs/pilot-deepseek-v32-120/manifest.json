@@ -1,0 +1,13 @@
+{
+  "run_id": "pilot-deepseek-v32-120",
+  "prompt_version": "geo-pilot-v1",
+  "prompt_sha256": "f637edd4d0656de8f74d6635ee2d47045e515b5d562e3ec866383ca1bdf0750e",
+  "model": "deepseek/deepseek-v3.2",
+  "sample_size": 120,
+  "completed": 117,
+  "failed": 3,
+  "actual_cost_usd": 0.022074472919999998,
+  "max_cost_usd": 3,
+  "corpus_sha256": "2e0b2e3b192750b0479730cd0aa56933d3472095cb836a6ec2d2b68caf13306a",
+  "created_at": "2026-08-01T16:21:51.062Z"
+}

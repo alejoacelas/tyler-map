@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "providers": {
+    "openrouter": {
+      "name": "OpenRouter"
+    }
+  },
+  "resources": {
+    "openrouter": {
+      "name": "openrouter",
+      "providerName": "OpenRouter",
+      "serviceId": "api"
+    },
+    "openrouter-plan": {
+      "name": "openrouter-plan",
+      "providerName": "OpenRouter",
+      "serviceId": "pay_as_you_go"
+    }
+  }
+}
