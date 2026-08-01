@@ -180,7 +180,7 @@ Results are deduplicated by article and capped at 120 per place. The first tier-
 
 The browser downloads one compact place index. Autocomplete ranks exact names and aliases before prefixes and substrings, then uses result count, population, and a type preference to settle collisions. Countries and cities outrank same-named administrative regions while all candidates remain visible.
 
-The map uses MapLibre for the raster basemap and navigation. Coverage markers use Supercluster in the main browser thread and MapLibre DOM markers because worker-backed GeoJSON layers did not materialize under the Sites runtime. At each zoom:
+The map uses MapLibre for the raster basemap and navigation. Coverage markers use Supercluster in the main browser thread and MapLibre DOM markers because the original worker-backed GeoJSON layer received 2,564 features but rendered none in production. At each zoom:
 
 - cluster labels show the number of locations;
 - cluster area scales with the number of locations;
@@ -198,7 +198,7 @@ The build writes static JSON rather than requiring a production database:
 - [`data/article-place-links.jsonl`](data/article-place-links.jsonl): accepted edge ledger;
 - [`data/classification-ledger.jsonl`](data/classification-ledger.jsonl): one classification state per corpus record.
 
-The site is built with vinext and deployed through ChatGPT Sites. `.openai/hosting.json` contains the opaque Sites project ID; it contains no credential.
+The site is a standard Next.js application deployed publicly on Vercel. The production site requires no database or runtime secrets.
 
 ## 10. Evaluation and remaining gaps
 

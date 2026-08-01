@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import * as maplibregl from "maplibre-gl";
-import type { Map, Marker } from "maplibre-gl";
+import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 import Supercluster from "supercluster";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 type Place = {
-  id: string; name: string; type: "country" | "admin1" | "city"; lat: number; lon: number;
+  id: string; name: string; ascii: string; type: "country" | "admin1" | "city"; country: string;
+  adminName?: string | null; lat: number; lon: number; population: number; aliases: string[];
+  resultCount: number; parentId: string | null;
   totalResultCount: number; categoryCount: number; topCategory: string | null; resultFile: string | null;
 };
 type Result = { article_id: string; sourcePlace: Pick<Place, "id" | "name" | "type" | "lat" | "lon"> };
@@ -34,7 +36,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
   onSelectResult: (index: number) => void; onSelectPlace: (place: Place) => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<Map | null>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
   const coverageMarkers = useRef<Marker[]>([]);
   const resultMarkers = useRef<Marker[]>([]);
   const clusterIndex = useRef<Supercluster<PointProperties, ClusterProperties> | null>(null);
@@ -87,27 +89,29 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
       const features = boxes.flatMap((bbox) => index.getClusters(bbox, zoom));
       coverageMarkers.current = features.map((feature) => {
         const isCluster = Boolean("cluster" in feature.properties && feature.properties.cluster);
-        const readings = isCluster ? feature.properties.readings : feature.properties.count;
-        const placesCount = isCluster ? feature.properties.point_count : 1;
+        const clusterProperties = isCluster ? feature.properties as Supercluster.ClusterProperties & ClusterProperties : null;
+        const pointProperties = isCluster ? null : feature.properties as PointProperties;
+        const readings = clusterProperties?.readings ?? pointProperties!.count;
+        const placesCount = clusterProperties?.point_count ?? 1;
         const sizeMetric = isCluster ? placesCount : readings;
         const size = Math.max(13, Math.min(30, 10 + Math.sqrt(sizeMetric) * 0.9));
         const element = document.createElement("button");
         element.type = "button";
-        element.className = isCluster ? "atlas-map-marker cluster" : `atlas-map-marker point variety-${Math.min(4, feature.properties.variety || 1)}`;
+        element.className = isCluster ? "atlas-map-marker cluster" : `atlas-map-marker point variety-${Math.min(4, pointProperties!.variety || 1)}`;
         element.style.setProperty("--marker-size", `${size}px`);
         element.textContent = isCluster ? compactCount(placesCount) : "";
         element.title = isCluster
           ? `${placesCount.toLocaleString()} places · ${readings.toLocaleString()} readings`
-          : `${feature.properties.name} · ${readings.toLocaleString()} readings`;
+          : `${pointProperties!.name} · ${readings.toLocaleString()} readings`;
         element.setAttribute("aria-label", element.title);
-        if (!isCluster && feature.properties.placeId === selectedPlace.current?.id) element.classList.add("selected");
-        if (!isCluster) element.dataset.placeId = feature.properties.placeId;
+        if (pointProperties?.placeId === selectedPlace.current?.id) element.classList.add("selected");
+        if (pointProperties) element.dataset.placeId = pointProperties.placeId;
         element.addEventListener("click", (event) => {
           event.stopPropagation();
-          if (isCluster) {
-            map.easeTo({ center: feature.geometry.coordinates as [number, number], zoom: index.getClusterExpansionZoom(feature.properties.cluster_id) });
+          if (clusterProperties) {
+            map.easeTo({ center: feature.geometry.coordinates as [number, number], zoom: index.getClusterExpansionZoom(clusterProperties.cluster_id) });
           } else {
-            const next = placeById.current.get(feature.properties.placeId);
+            const next = placeById.current.get(pointProperties!.placeId);
             if (next) callbacks.current.onSelectPlace(next);
           }
         });
