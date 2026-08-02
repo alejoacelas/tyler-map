@@ -380,6 +380,18 @@ def extract(post, aliases):
 
     for alias, count in (title_counts + body_counts).items():
         title_count, body_count = title_counts[alias], body_counts[alias]
+        # Prefer the longest recognized place phrase. A mention of Beverly Hills
+        # is not also evidence for Beverly, Massachusetts; New York is not York.
+        if " " not in alias:
+            longer_aliases = [
+                other for other in (title_counts + body_counts)
+                if other != alias and f" {alias} " in f" {other} "
+            ]
+            if (
+                title_count <= sum(title_counts[other] for other in longer_aliases)
+                and body_count <= sum(body_counts[other] for other in longer_aliases)
+            ):
+                continue
         options = aliases[alias]
         # Resolve a shared name to the most populous place unless a country name in the post disambiguates it.
         place = options[0]
@@ -627,6 +639,7 @@ def main():
                             f"About {all_places[country_id]['name']}, broader context for {place['name']}",
                         ))
         items.sort(key=lambda item: (
+            item.get("source_place_id", place_id) != place_id,
             item["tier"], -float(item.get("audit_relevance", 0)), -item["confidence"], -item["strength"],
             -int(articles.get(item["article_id"], {}).get("date", "0000-00-00").replace("-", "") or 0),
             item["article_id"],

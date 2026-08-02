@@ -66,6 +66,20 @@ for case in queries:
         if any(result["sourcePlace"]["id"] == matches[0]["id"] for result in results):
             failures.append({"query": case["query"], "error": "has an unsupported direct place result"})
 
+for place in places:
+    if not place["resultFile"]:
+        continue
+    results = json.loads((ROOT / "public" / place["resultFile"].lstrip("/")).read_text())
+    inherited_seen = False
+    for result in results:
+        is_direct = result["sourcePlace"]["id"] == place["id"]
+        if is_direct and inherited_seen:
+            failures.append({"query": place["name"], "error": "direct result follows inherited context"})
+            break
+        inherited_seen = inherited_seen or not is_direct
+    if failures and failures[-1].get("error") == "direct result follows inherited context":
+        break
+
 report = {"queries": len(queries), "checked": len(queries), "failures": failures}
 print(json.dumps(report, indent=2, ensure_ascii=False))
 sys.exit(bool(failures))

@@ -1,7 +1,7 @@
 <!--ai-->
 # Tyler Cowen Atlas
 
-Search or select a place, then read Tyler Cowen’s writing about it. Countries, first-level regions, and cities are resolved before articles are ranked, so `Georgia`, `Utah`, `Paris`, and `Turkey` have stable geographic meanings. Map circles encode reading count by size and category variety by color.
+Search or select a place, then read Tyler Cowen’s writing about it. Countries, first-level regions, and cities are resolved before articles are ranked, so `Georgia`, `Utah`, `Paris`, and `Turkey` have stable geographic meanings. Map dot size encodes reading count.
 
 Live site: [tyler-map.vercel.app](https://tyler-map.vercel.app)
 

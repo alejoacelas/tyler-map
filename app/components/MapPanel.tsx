@@ -13,7 +13,7 @@ type Place = {
   totalResultCount: number; categoryCount: number; topCategory: string | null; resultFile: string | null;
 };
 type Result = { article_id: string; sourcePlace: Pick<Place, "id" | "name" | "type" | "lat" | "lon"> };
-type PointProperties = { placeId: string; name: string; count: number; variety: number };
+type PointProperties = { placeId: string; name: string; count: number };
 type ClusterProperties = { readings: number };
 
 const style = {
@@ -53,7 +53,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
     const points: Array<Supercluster.PointFeature<PointProperties>> = places.filter((item) => item.resultFile && item.totalResultCount > 0).map((item) => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [item.lon, item.lat] },
-      properties: { placeId: item.id, name: item.name, count: item.totalResultCount, variety: item.categoryCount },
+      properties: { placeId: item.id, name: item.name, count: item.totalResultCount },
     }));
     clusterIndex.current = new Supercluster<PointProperties, ClusterProperties>({
       radius: 46, maxZoom: 8,
@@ -100,7 +100,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
         const size = Math.max(13, Math.min(30, 10 + Math.sqrt(sizeMetric) * 0.9));
         const element = document.createElement("button");
         element.type = "button";
-        element.className = isCluster ? "atlas-map-marker cluster" : `atlas-map-marker point variety-${Math.min(4, pointProperties!.variety || 1)}`;
+        element.className = isCluster ? "atlas-map-marker cluster" : "atlas-map-marker point";
         element.style.setProperty("--marker-size", `${size}px`);
         element.textContent = isCluster ? compactCount(placesCount) : "";
         element.title = isCluster
@@ -176,7 +176,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
 
   return <aside className="map-panel" aria-label="Atlas map">
     <div ref={container} className="map-canvas" />
-    <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dots show readings · clusters show places"}</small></div>
-    <div className="map-legend"><strong>Atlas coverage</strong><span><i className="low" />1 kind</span><span><i className="mid" />2–3 kinds</span><span><i className="high" />4+ kinds</span><small>Dots scale by readings · clusters show locations</small></div>
+    <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dot size shows readings · clusters show places"}</small></div>
+    <div className="map-legend"><strong>Atlas coverage</strong><small>Dot size = readings · clusters = locations</small></div>
   </aside>;
 }

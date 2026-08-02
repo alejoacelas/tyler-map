@@ -1,6 +1,6 @@
 {
   "schemaVersion": "place-index-v1",
-  "createdAt": "2026-08-01T19:24:55.961315+00:00",
+  "createdAt": "2026-08-02T04:07:06.461074+00:00",
   "inputs": {
     "corpus": {
       "path": "/Users/alejo/best/work/once/2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl",
@@ -40,19 +40,19 @@
   },
   "counts": {
     "corpusArticles": 34345,
-    "displayArticles": 18826,
+    "displayArticles": 18823,
     "places": 37080,
-    "placesWithResults": 2564,
-    "articlePlaceLinks": 42436,
+    "placesWithResults": 2538,
+    "articlePlaceLinks": 41997,
     "audit": {
       "correct_place": 1047,
-      "wrong_place": 205,
+      "wrong_place": 162,
       "same_name_nonplace": 146,
       "ambiguous": 4
     },
-    "classified": 18009,
+    "classified": 18006,
     "body:usable": 33404,
-    "unclassified": 15519,
+    "unclassified": 15522,
     "body:short": 794,
     "model_classified": 817,
     "body:empty_or_residue": 147
@@ -63,20 +63,20 @@
   },
   "outputs": {
     "public/data/places.json": {
-      "sha256": "375f4da26575a8211ed33ef27b1f042cbc2cc5a8478c360ac976d0cb31c13437",
-      "bytes": 11743816
+      "sha256": "b1e0a701a0390de4c2a53cacc10d9846a3cac65043781277a4c737f269e9aacf",
+      "bytes": 11742851
     },
     "data/article-place-links.jsonl": {
-      "sha256": "1ca3f8287d062ce38001e11b15e96cfe598db8531db33ba930eea078a097f4cf",
-      "bytes": 23450421
+      "sha256": "a1fb42a1590a37414902343c27e1a6d6bdcc618ea08887bffd0b87d6349e158f",
+      "bytes": 23208405
     },
     "data/classification-ledger.jsonl": {
-      "sha256": "be934a5faf8326ad5186f9b61c07c9afe4987c93bbb88132b4ee090d9e122fb2",
-      "bytes": 5981360
+      "sha256": "89a198a0020353e44d85c94432d4a571a8b9ef5e6f0513d61c27be1738449e86",
+      "bytes": 5981332
     },
     "public/data/results/": {
-      "files": 2564,
-      "bytes": 60759348
+      "files": 2538,
+      "bytes": 59889543
     }
   },
   "knownGaps": [

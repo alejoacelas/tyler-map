@@ -17,10 +17,10 @@ The atlas turns 34,345 Tyler Cowen posts into an inspectable place index:
 |---|---:|---:|---|
 | Corpus | Several historical and modern archives | 34,345 posts | Preserve provenance and incomplete records |
 | Gazetteer | GeoNames countries, regions, and cities | 37,080 searchable places | Resolve locations before ranking articles |
-| Deterministic classification | Titles and cleaned bodies | 18,009 classified posts | Prefer precision; keep misses in a ledger |
+| Deterministic classification | Titles and cleaned bodies | 18,006 classified posts | Prefer precision; keep misses in a ledger |
 | Recall pass | 14,562 initially unclassified records | 817 currently model-classified posts | Accept only source-verifiable, GeoNames-resolved evidence |
 | Top-place audit | Repeated top-ten edges for 100 high-volume places | 1,968 reviewed edges | Remove homonyms before they reach users |
-| Published index | Accepted and inherited edges | 2,564 places with results; 42,436 article–place edges | Precompute bounded JSON payloads for a fast static site |
+| Published index | Accepted and inherited edges | 2,538 places with results; 41,997 article–place edges | Precompute bounded JSON payloads for a fast static site |
 
 The current build, input hashes, costs, thresholds, and output hashes are in [`reproduce/run.json`](reproduce/run.json). Record-level decisions are in [`data/classification-ledger.jsonl`](data/classification-ledger.jsonl) and [`data/article-place-links.jsonl`](data/article-place-links.jsonl).
 
@@ -103,6 +103,7 @@ Travel-series title phrases such as `notes`, `advice`, `guide`, `food in`, and `
 Names are not treated as places merely because they occur in GeoNames:
 
 - one-word city and region aliases must preserve geographic capitalization;
+- a one-word match found only inside a longer recognized place name is discarded, so `Beverly Hills` does not also match Beverly, Massachusetts;
 - ambiguous words require a geographic title construction or repeated body mentions plus a geographic cue;
 - low-population one-word cities need a title-level geographic construction or a country cue;
 - a place alias next to another capitalized name is treated as a person unless the title itself supplies the relevant country;
@@ -137,7 +138,7 @@ A second pass used Gemini 2.5 Flash to judge the strongest direct edges for the 
 - `wrong_place`
 - `ambiguous`
 
-The audit was iterative: removing a false top-ten edge reveals the next candidate, which was then reviewed. This produced 1,968 unique edge decisions for $0.92. Across those decisions, the model labeled 1,116 correct, 410 wrong-place, 435 non-place homonyms, and 7 ambiguous. The current build applies the subset whose article/place pairs still exist after deterministic cleanup: 1,047 correct, 205 wrong-place, 146 non-place, and 4 ambiguous.
+The audit was iterative: removing a false top-ten edge reveals the next candidate, which was then reviewed. This produced 1,968 unique edge decisions for $0.92. Across those decisions, the model labeled 1,116 correct, 410 wrong-place, 435 non-place homonyms, and 7 ambiguous. The current build applies the subset whose article/place pairs still exist after deterministic cleanup: 1,047 correct, 162 wrong-place, 146 non-place, and 4 ambiguous.
 
 Wrong-place and non-place verdicts delete the edge. Ambiguous edges move to tier 4 with confidence capped at 0.5. Correct edges retain a 0–1 audit relevance score that helps order otherwise similar results. All prompts, hashes, response IDs, usage, costs, decisions, and failures remain in [`data/model-runs/top-place-audit-v1/`](data/model-runs/top-place-audit-v1/).
 
@@ -167,12 +168,13 @@ Each article receives one display category from token overlap in its title and f
 
 The result order is deterministic:
 
-1. relation tier;
-2. audited relevance;
-3. confidence;
-4. evidence strength;
-5. publication date;
-6. stable article ID.
+1. direct evidence for the selected place before inherited regional or national context;
+2. relation tier;
+3. audited relevance;
+4. confidence;
+5. evidence strength;
+6. publication date;
+7. stable article ID.
 
 Results are deduplicated by article and capped at 120 per place. The first tier-1 result is marked “Start here.” Category filters do not rerun ranking; they filter the place’s ordered payload. There is no hidden semantic reranker or diversity penalty in the current product.
 
@@ -185,7 +187,6 @@ The map uses MapLibre for the raster basemap and navigation. Coverage markers us
 - cluster labels show the number of locations;
 - cluster area scales with the number of locations;
 - individual dot area scales with reading count;
-- individual color shows one, two to three, or four-plus article categories;
 - clicking a cluster zooms to its children;
 - clicking a place loads its ranked readings.
 

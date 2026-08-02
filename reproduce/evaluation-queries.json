@@ -14,6 +14,7 @@
   {"query":"Bogotá","type":"city","country":"CO","must_include_relation":"broader"},
   {"query":"Ocaña","type":"city","country":"CO","must_exclude_title_term":"Carlos Ocaña"},
   {"query":"Tame","type":"city","country":"CO","must_have_no_direct_results":true},
+  {"query":"Beverly","type":"city","country":"US","must_have_no_direct_results":true},
   {"query":"Jordan","type":"country","canonical":"Jordan"},
   {"query":"Reading","type":"city","country":"GB"},
   {"query":"Nice","type":"city","country":"FR"},
