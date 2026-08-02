@@ -69,7 +69,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
     mapRef.current = map;
     const mapContainer = container.current;
     const focusMap = () => callbacks.current.onExploreMap();
-    mapContainer.addEventListener("pointerdown", focusMap, { capture: true });
+    for (const eventName of ["pointerdown", "click", "wheel"]) mapContainer.addEventListener(eventName, focusMap, { capture: true });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-left");
 
@@ -132,7 +132,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
     });
     resizeObserver.observe(container.current);
     return () => {
-      mapContainer.removeEventListener("pointerdown", focusMap, { capture: true });
+      for (const eventName of ["pointerdown", "click", "wheel"]) mapContainer.removeEventListener(eventName, focusMap, { capture: true });
       resizeObserver.disconnect();
       coverageMarkers.current.forEach((marker) => marker.remove());
       resultMarkers.current.forEach((marker) => marker.remove());
