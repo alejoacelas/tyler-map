@@ -67,6 +67,9 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
     if (!container.current || mapRef.current) return;
     const map = new maplibregl.Map({ container: container.current, style, center: [8, 24], zoom: 1.35, minZoom: 1, attributionControl: false });
     mapRef.current = map;
+    const mapContainer = container.current;
+    const focusMap = () => callbacks.current.onExploreMap();
+    mapContainer.addEventListener("pointerdown", focusMap, { capture: true });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-left");
 
@@ -129,6 +132,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
     });
     resizeObserver.observe(container.current);
     return () => {
+      mapContainer.removeEventListener("pointerdown", focusMap, { capture: true });
       resizeObserver.disconnect();
       coverageMarkers.current.forEach((marker) => marker.remove());
       resultMarkers.current.forEach((marker) => marker.remove());
@@ -171,7 +175,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
   }, [activeResult, results]);
 
   return <aside className="map-panel" aria-label="Atlas map">
-    <div ref={container} className="map-canvas" onPointerDown={() => callbacks.current.onExploreMap()} />
+    <div ref={container} className="map-canvas" />
     <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dots show readings · clusters show places"}</small></div>
     <div className="map-legend"><strong>Atlas coverage</strong><span><i className="low" />1 kind</span><span><i className="mid" />2–3 kinds</span><span><i className="high" />4+ kinds</span><small>Dots scale by readings · clusters show locations</small></div>
   </aside>;
