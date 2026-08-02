@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "place-index-v1",
-  "createdAt": "2026-08-02T04:07:06.461074+00:00",
+  "schemaVersion": "place-index-v2",
+  "createdAt": "2026-08-02T14:42:26.180626+00:00",
   "inputs": {
     "corpus": {
       "path": "/Users/alejo/best/work/once/2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl",
@@ -36,6 +36,26 @@
       "promptVersion": "place-edge-audit-v1",
       "completed": 1968,
       "actualCostUsd": 0.9235284999999985
+    },
+    "placeVisits": {
+      "path": "/Users/alejo/best/work/once/2026-08-tyler-cowen-map/data/place-visits.jsonl",
+      "sha256": "dc9ccf91685a0ccf8d8e23f5f17beb333ec6eaaf72d54231aede32d57b800c8b",
+      "model": "google/gemini-2.5-flash",
+      "promptVersion": "place-visits-v2",
+      "completed": 2300,
+      "actualCostUsd": 9.212512710000038
+    },
+    "placeVisitAudit": {
+      "model": "google/gemini-2.5-pro",
+      "promptVersion": "place-visit-audit-v3",
+      "completed": 386,
+      "verdicts": {
+        "confirmed_visit": 321,
+        "insufficient_or_inferred": 47,
+        "wrong_speaker_or_place": 13,
+        "future_or_planned": 5
+      },
+      "actualCostUsd": 5.574518750000003
     }
   },
   "counts": {
@@ -55,7 +75,12 @@
     "unclassified": 15522,
     "body:short": 794,
     "model_classified": 817,
-    "body:empty_or_residue": 147
+    "body:empty_or_residue": 147,
+    "visitStatus": {
+      "confirmed": 463,
+      "discussed": 644,
+      "unknown": 35973
+    }
   },
   "thresholds": {
     "maxResultsPerPlace": 120,
@@ -63,8 +88,8 @@
   },
   "outputs": {
     "public/data/places.json": {
-      "sha256": "b1e0a701a0390de4c2a53cacc10d9846a3cac65043781277a4c737f269e9aacf",
-      "bytes": 11742851
+      "sha256": "2e79737e113a38c07b66c83c01ee1430dd5ce84c007fd7405ad139a572275f2f",
+      "bytes": 13342635
     },
     "data/article-place-links.jsonl": {
       "sha256": "a1fb42a1590a37414902343c27e1a6d6bdcc618ea08887bffd0b87d6349e158f",
@@ -73,6 +98,10 @@
     "data/classification-ledger.jsonl": {
       "sha256": "89a198a0020353e44d85c94432d4a571a8b9ef5e6f0513d61c27be1738449e86",
       "bytes": 5981332
+    },
+    "data/place-visits.jsonl": {
+      "sha256": "dc9ccf91685a0ccf8d8e23f5f17beb333ec6eaaf72d54231aede32d57b800c8b",
+      "bytes": 8410747
     },
     "public/data/results/": {
       "files": 2538,

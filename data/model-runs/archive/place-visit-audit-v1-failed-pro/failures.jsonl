@@ -1,0 +1,390 @@
+{"place_id":"country:cn","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:00.807Z"}
+{"place_id":"country:de","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:00.878Z"}
+{"place_id":"country:jp","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:01.008Z"}
+{"place_id":"country:mx","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:01.065Z"}
+{"place_id":"country:fr","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:01.284Z"}
+{"place_id":"country:us","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:01.296Z"}
+{"place_id":"admin1:us.ny","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:01.665Z"}
+{"place_id":"country:in","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:01.908Z"}
+{"place_id":"country:ca","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:07.231Z"}
+{"place_id":"country:it","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:07.351Z"}
+{"place_id":"admin1:gb.eng","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:07.521Z"}
+{"place_id":"geonames:4140963","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:07.782Z"}
+{"place_id":"geonames:2643743","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:08.100Z"}
+{"place_id":"country:sg","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:08.281Z"}
+{"place_id":"country:br","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:08.715Z"}
+{"place_id":"country:se","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:09.045Z"}
+{"place_id":"country:es","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:13.376Z"}
+{"place_id":"country:ie","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:14.021Z"}
+{"place_id":"admin1:us.tx","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:14.617Z"}
+{"place_id":"country:nz","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:14.738Z"}
+{"place_id":"country:ua","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:14.869Z"}
+{"place_id":"geonames:4887398","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:14.973Z"}
+{"place_id":"geonames:5128581","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:15.619Z"}
+{"place_id":"country:ar","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:15.717Z"}
+{"place_id":"admin1:us.nj","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:20.195Z"}
+{"place_id":"country:il","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:20.753Z"}
+{"place_id":"country:kr","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:06:20.757Z"}
+{"place_id":"geonames:5368361","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:21.229Z"}
+{"place_id":"country:ht","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:21.667Z"}
+{"place_id":"country:hk","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:21.667Z"}
+{"place_id":"country:ch","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:21.887Z"}
+{"place_id":"country:tw","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:22.513Z"}
+{"place_id":"country:is","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:27.036Z"}
+{"place_id":"geonames:1816670","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:27.368Z"}
+{"place_id":"country:no","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:27.782Z"}
+{"place_id":"geonames:2988507","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:27.959Z"}
+{"place_id":"country:cl","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:28.072Z"}
+{"place_id":"country:za","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:28.691Z"}
+{"place_id":"geonames:5125771","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:28.829Z"}
+{"place_id":"country:ng","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:29.825Z"}
+{"place_id":"country:nl","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:33.772Z"}
+{"place_id":"geonames:2950159","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:34.189Z"}
+{"place_id":"country:pk","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:34.250Z"}
+{"place_id":"country:pt","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:34.836Z"}
+{"place_id":"admin1:us.mi","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:35.155Z"}
+{"place_id":"country:kp","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:35.548Z"}
+{"place_id":"country:fi","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:35.969Z"}
+{"place_id":"country:vn","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:37.296Z"}
+{"place_id":"admin1:us.ma","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:40.515Z"}
+{"place_id":"country:th","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:40.562Z"}
+{"place_id":"country:pl","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:41.003Z"}
+{"place_id":"admin1:gb.sct","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:41.019Z"}
+{"place_id":"country:et","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:41.626Z"}
+{"place_id":"geonames:5327684","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:41.661Z"}
+{"place_id":"geonames:1796236","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:42.910Z"}
+{"place_id":"country:ph","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:44.129Z"}
+{"place_id":"geonames:1850147","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:47.009Z"}
+{"place_id":"admin1:us.md","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:47.528Z"}
+{"place_id":"country:co","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:47.556Z"}
+{"place_id":"geonames:2640729","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:47.832Z"}
+{"place_id":"admin1:us.pa","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:48.455Z"}
+{"place_id":"country:eg","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:48.651Z"}
+{"place_id":"country:ke","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:50.305Z"}
+{"place_id":"geonames:5809844","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:50.894Z"}
+{"place_id":"geonames:5110302","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:06:54.032Z"}
+{"place_id":"geonames:4164138","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:06:54.560Z"}
+{"place_id":"geonames:5391959","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:54.885Z"}
+{"place_id":"country:sv","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:55.096Z"}
+{"place_id":"geonames:4671654","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:55.912Z"}
+{"place_id":"geonames:2653941","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:06:56.087Z"}
+{"place_id":"country:be","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:06:57.417Z"}
+{"place_id":"country:gh","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:06:57.514Z"}
+{"place_id":"admin1:us.nv","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:00.821Z"}
+{"place_id":"country:my","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:01.486Z"}
+{"place_id":"geonames:4335045","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:02.462Z"}
+{"place_id":"geonames:524901","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:02.489Z"}
+{"place_id":"geonames:5506956","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:02.819Z"}
+{"place_id":"geonames:292223","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:04.165Z"}
+{"place_id":"country:hu","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:05.079Z"}
+{"place_id":"admin1:us.ak","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:07.454Z"}
+{"place_id":"admin1:us.az","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:07.983Z"}
+{"place_id":"admin1:us.va","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:08.320Z"}
+{"place_id":"geonames:4699066","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:09.002Z"}
+{"place_id":"geonames:4560349","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:09.331Z"}
+{"place_id":"country:pa","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:09.457Z"}
+{"place_id":"admin1:us.ms","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:07:12.195Z"}
+{"place_id":"geonames:5391811","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:12.252Z"}
+{"place_id":"admin1:ca.08","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:14.217Z"}
+{"place_id":"geonames:4671240","error":"SyntaxError: Unterminated string in JSON at position 30 (line 2 column 29)","at":"2026-08-02T14:07:14.849Z"}
+{"place_id":"geonames:3530597","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:15.144Z"}
+{"place_id":"admin1:us.in","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:15.924Z"}
+{"place_id":"geonames:1275339","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:07:16.312Z"}
+{"place_id":"admin1:us.la","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:16.649Z"}
+{"place_id":"admin1:us.mo","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:19.678Z"}
+{"place_id":"admin1:us.ks","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:20.630Z"}
+{"place_id":"country:hn","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:21.205Z"}
+{"place_id":"geonames:2800866","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:22.017Z"}
+{"place_id":"admin1:cn.32","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:22.750Z"}
+{"place_id":"geonames:3435910","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:22.903Z"}
+{"place_id":"geonames:4347778","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:23.034Z"}
+{"place_id":"admin1:gb.nir","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:23.615Z"}
+{"place_id":"geonames:2964574","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:26.386Z"}
+{"place_id":"admin1:us.ok","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:27.283Z"}
+{"place_id":"geonames:1273294","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:27.965Z"}
+{"place_id":"country:tr","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:28.837Z"}
+{"place_id":"admin1:us.wv","error":"SyntaxError: Unterminated string in JSON at position 25 (line 2 column 24)","at":"2026-08-02T14:07:29.146Z"}
+{"place_id":"geonames:4407066","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:29.558Z"}
+{"place_id":"admin1:us.ky","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:30.779Z"}
+{"place_id":"admin1:us.ct","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:33.280Z"}
+{"place_id":"country:ye","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:33.693Z"}
+{"place_id":"geonames:2673730","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:34.531Z"}
+{"place_id":"admin1:us.al","error":"SyntaxError: Expected double-quoted property name in JSON at position 35 (line 2 column 34)","at":"2026-08-02T14:07:34.565Z"}
+{"place_id":"geonames:4726206","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:35.625Z"}
+{"place_id":"country:pr","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:36.213Z"}
+{"place_id":"admin1:us.hi","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:36.353Z"}
+{"place_id":"geonames:1835848","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:37.394Z"}
+{"place_id":"geonames:3117735","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:40.323Z"}
+{"place_id":"geonames:5133273","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:40.376Z"}
+{"place_id":"geonames:3128760","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:40.971Z"}
+{"place_id":"country:lk","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:41.680Z"}
+{"place_id":"admin1:es.56","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:41.855Z"}
+{"place_id":"admin1:ng.05","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:07:43.174Z"}
+{"place_id":"geonames:5419384","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:43.174Z"}
+{"place_id":"geonames:2761369","error":"SyntaxError: Unexpected end of JSON input","at":"2026-08-02T14:07:44.833Z"}
+{"place_id":"admin1:us.de","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:47.252Z"}
+{"place_id":"geonames:3718426","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:47.252Z"}
+{"place_id":"geonames:2650225","error":"SyntaxError: Unterminated string in JSON at position 25 (line 2 column 24)","at":"2026-08-02T14:07:47.732Z"}
+{"place_id":"country:ec","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:47.931Z"}
+{"place_id":"geonames:745044","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:48.304Z"}
+{"place_id":"geonames:1795565","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:07:49.612Z"}
+{"place_id":"country:tz","error":"SyntaxError: Unterminated string in JSON at position 26 (line 2 column 25)","at":"2026-08-02T14:07:50.086Z"}
+{"place_id":"geonames:4758023","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:07:51.465Z"}
+{"place_id":"admin1:ca.01","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:07:53.928Z"}
+{"place_id":"admin1:us.ri","error":"SyntaxError: Expected double-quoted property name in JSON at position 35 (line 2 column 34)","at":"2026-08-02T14:07:54.004Z"}
+{"place_id":"geonames:1264527","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:07:54.353Z"}
+{"place_id":"geonames:1815286","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:55.440Z"}
+{"place_id":"country:ma","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:07:55.591Z"}
+{"place_id":"country:gt","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:55.773Z"}
+{"place_id":"country:cu","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:07:56.565Z"}
+{"place_id":"geonames:4543762","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:07:58.594Z"}
+{"place_id":"geonames:5101798","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:00.823Z"}
+{"place_id":"geonames:4393217","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:00.823Z"}
+{"place_id":"geonames:4641239","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:00.823Z"}
+{"place_id":"geonames:3173435","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:02.138Z"}
+{"place_id":"geonames:4167147","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:02.425Z"}
+{"place_id":"admin1:it.15","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:02.572Z"}
+{"place_id":"geonames:6173331","error":"SyntaxError: Unterminated string in JSON at position 29 (line 2 column 28)","at":"2026-08-02T14:08:03.088Z"}
+{"place_id":"geonames:5206379","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:04.810Z"}
+{"place_id":"geonames:5520993","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:06.868Z"}
+{"place_id":"country:uy","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:07.403Z"}
+{"place_id":"geonames:2661604","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:08:07.403Z"}
+{"place_id":"geonames:3176959","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:09.071Z"}
+{"place_id":"geonames:4644585","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:09.543Z"}
+{"place_id":"country:hr","error":"SyntaxError: Unterminated string in JSON at position 26 (line 2 column 25)","at":"2026-08-02T14:08:09.872Z"}
+{"place_id":"admin1:us.ut","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:11.678Z"}
+{"place_id":"country:qa","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:12.753Z"}
+{"place_id":"geonames:2179537","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:13.190Z"}
+{"place_id":"country:ni","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:14.134Z"}
+{"place_id":"admin1:in.25","error":"SyntaxError: Unterminated string in JSON at position 40 (line 2 column 39)","at":"2026-08-02T14:08:15.748Z"}
+{"place_id":"geonames:4791160","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:15.886Z"}
+{"place_id":"country:al","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:08:15.887Z"}
+{"place_id":"geonames:1609350","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:16.062Z"}
+{"place_id":"geonames:2158177","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:18.170Z"}
+{"place_id":"country:rs","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:08:19.726Z"}
+{"place_id":"admin1:cn.29","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:20.790Z"}
+{"place_id":"geonames:3448439","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:22.048Z"}
+{"place_id":"geonames:4717782","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:08:22.229Z"}
+{"place_id":"country:lu","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:08:22.643Z"}
+{"place_id":"geonames:658225","error":"SyntaxError: Unexpected end of JSON input","at":"2026-08-02T14:08:22.680Z"}
+{"place_id":"geonames:3583747","error":"SyntaxError: Unterminated string in JSON at position 30 (line 2 column 29)","at":"2026-08-02T14:08:25.426Z"}
+{"place_id":"geonames:360630","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:25.663Z"}
+{"place_id":"geonames:1668341","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:27.461Z"}
+{"place_id":"admin1:ca.07","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:28.610Z"}
+{"place_id":"geonames:4299276","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:29.039Z"}
+{"place_id":"geonames:2911298","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:29.070Z"}
+{"place_id":"geonames:3451190","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:29.165Z"}
+{"place_id":"geonames:3369157","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:29.996Z"}
+{"place_id":"country:fo","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:31.811Z"}
+{"place_id":"geonames:361058","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:31.951Z"}
+{"place_id":"geonames:1809858","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:33.884Z"}
+{"place_id":"geonames:293397","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:35.553Z"}
+{"place_id":"geonames:3469058","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:35.813Z"}
+{"place_id":"geonames:4553433","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:36.108Z"}
+{"place_id":"geonames:4174757","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:36.466Z"}
+{"place_id":"geonames:281184","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:37.276Z"}
+{"place_id":"geonames:4994358","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:38.155Z"}
+{"place_id":"geonames:5097529","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:38.658Z"}
+{"place_id":"geonames:4487042","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:08:41.098Z"}
+{"place_id":"geonames:5913490","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:42.351Z"}
+{"place_id":"country:do","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:42.380Z"}
+{"place_id":"geonames:1269843","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:43.116Z"}
+{"place_id":"geonames:3169070","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:43.188Z"}
+{"place_id":"geonames:2193733","error":"SyntaxError: Unterminated string in JSON at position 38 (line 2 column 37)","at":"2026-08-02T14:08:43.675Z"}
+{"place_id":"geonames:4776222","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:45.209Z"}
+{"place_id":"geonames:3172394","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:45.341Z"}
+{"place_id":"geonames:4634946","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:47.081Z"}
+{"place_id":"admin1:cn.11","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:48.455Z"}
+{"place_id":"admin1:ar.20","error":"SyntaxError: Unterminated string in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:48.474Z"}
+{"place_id":"geonames:2267057","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:49.279Z"}
+{"place_id":"country:cr","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:49.590Z"}
+{"place_id":"country:az","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:49.799Z"}
+{"place_id":"geonames:4281730","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:51.794Z"}
+{"place_id":"admin1:mx.31","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:52.081Z"}
+{"place_id":"geonames:1642911","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:08:52.932Z"}
+{"place_id":"geonames:3031582","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:54.893Z"}
+{"place_id":"geonames:4297983","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:55.620Z"}
+{"place_id":"geonames:5224151","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:08:55.694Z"}
+{"place_id":"geonames:5879400","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:55.896Z"}
+{"place_id":"geonames:3522507","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:08:56.504Z"}
+{"place_id":"geonames:12750398","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:08:58.542Z"}
+{"place_id":"geonames:3871336","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:58.923Z"}
+{"place_id":"admin1:de.02","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:08:59.406Z"}
+{"place_id":"geonames:1804651","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:01.683Z"}
+{"place_id":"geonames:3054643","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:01.982Z"}
+{"place_id":"geonames:5318313","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:02.172Z"}
+{"place_id":"geonames:5946768","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:02.206Z"}
+{"place_id":"geonames:184745","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:03.099Z"}
+{"place_id":"admin1:mx.12","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:04.543Z"}
+{"place_id":"geonames:2523920","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:05.500Z"}
+{"place_id":"geonames:4691930","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:05.753Z"}
+{"place_id":"geonames:1701668","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:07.867Z"}
+{"place_id":"geonames:3164603","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:08.457Z"}
+{"place_id":"geonames:5525577","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:08.899Z"}
+{"place_id":"geonames:4936159","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:08.966Z"}
+{"place_id":"geonames:6332479","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:09:09.663Z"}
+{"place_id":"geonames:4790534","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:10.791Z"}
+{"place_id":"admin1:in.28","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:11.502Z"}
+{"place_id":"admin1:it.16","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:12.333Z"}
+{"place_id":"admin1:cn.25","error":"SyntaxError: Unterminated string in JSON at position 40 (line 2 column 39)","at":"2026-08-02T14:09:14.417Z"}
+{"place_id":"country:xk","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:15.031Z"}
+{"place_id":"geonames:3688689","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:15.052Z"}
+{"place_id":"geonames:1174872","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:15.628Z"}
+{"place_id":"geonames:5099967","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:16.009Z"}
+{"place_id":"geonames:5417598","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:16.933Z"}
+{"place_id":"geonames:6075357","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:18.591Z"}
+{"place_id":"geonames:4354256","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:18.983Z"}
+{"place_id":"geonames:756135","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:20.944Z"}
+{"place_id":"geonames:2294877","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:21.879Z"}
+{"place_id":"country:si","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:21.987Z"}
+{"place_id":"geonames:3161732","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:22.388Z"}
+{"place_id":"geonames:2523083","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:22.696Z"}
+{"place_id":"geonames:4835797","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:23.808Z"}
+{"place_id":"geonames:5105496","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:25.534Z"}
+{"place_id":"geonames:5102443","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:25.604Z"}
+{"place_id":"geonames:4367175","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:27.521Z"}
+{"place_id":"geonames:4772735","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:28.403Z"}
+{"place_id":"geonames:1814906","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:28.559Z"}
+{"place_id":"admin1:us.mt","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:28.935Z"}
+{"place_id":"admin1:ps.we","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:29.677Z"}
+{"place_id":"geonames:2660646","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:29.959Z"}
+{"place_id":"geonames:2643736","error":"SyntaxError: Unexpected end of JSON input","at":"2026-08-02T14:09:32.112Z"}
+{"place_id":"geonames:5095281","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:32.521Z"}
+{"place_id":"admin1:it.20","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:34.223Z"}
+{"place_id":"geonames:344979","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:34.649Z"}
+{"place_id":"geonames:3521081","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:35.491Z"}
+{"place_id":"country:pe","error":"SyntaxError: Unterminated string in JSON at position 25 (line 2 column 24)","at":"2026-08-02T14:09:35.557Z"}
+{"place_id":"geonames:2925177","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:36.139Z"}
+{"place_id":"geonames:4164143","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:37.018Z"}
+{"place_id":"geonames:1279233","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:38.527Z"}
+{"place_id":"geonames:2553604","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:38.748Z"}
+{"place_id":"geonames:4259418","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:09:40.864Z"}
+{"place_id":"geonames:148730","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:40.974Z"}
+{"place_id":"geonames:3988025","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:41.872Z"}
+{"place_id":"geonames:3176219","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:41.988Z"}
+{"place_id":"admin1:cn.26","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:42.971Z"}
+{"place_id":"admin1:in.24","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:09:44.163Z"}
+{"place_id":"admin1:mx.30","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:45.262Z"}
+{"place_id":"geonames:1838524","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:45.282Z"}
+{"place_id":"geonames:3836277","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:47.481Z"}
+{"place_id":"geonames:2747891","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:09:47.546Z"}
+{"place_id":"geonames:2825297","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:48.628Z"}
+{"place_id":"geonames:4815352","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:48.657Z"}
+{"place_id":"geonames:3529947","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:49.655Z"}
+{"place_id":"geonames:1797929","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:09:50.888Z"}
+{"place_id":"geonames:1805753","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:09:52.171Z"}
+{"place_id":"geonames:703448","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:52.243Z"}
+{"place_id":"geonames:3995465","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:53.895Z"}
+{"place_id":"geonames:3143244","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:54.167Z"}
+{"place_id":"geonames:4004898","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:54.876Z"}
+{"place_id":"geonames:2972315","error":"SyntaxError: Expected double-quoted property name in JSON at position 35 (line 2 column 34)","at":"2026-08-02T14:09:55.504Z"}
+{"place_id":"geonames:6324733","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:56.716Z"}
+{"place_id":"admin1:my.09","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:09:57.288Z"}
+{"place_id":"admin1:es.58","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:09:59.234Z"}
+{"place_id":"geonames:2034937","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:09:59.425Z"}
+{"place_id":"geonames:1278710","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:10:00.787Z"}
+{"place_id":"geonames:292968","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:00.790Z"}
+{"place_id":"geonames:3919968","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:01.493Z"}
+{"place_id":"geonames:2657896","error":"SyntaxError: Unterminated string in JSON at position 16 (line 2 column 15)","at":"2026-08-02T14:10:02.095Z"}
+{"place_id":"geonames:11790353","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:02.474Z"}
+{"place_id":"geonames:3164527","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:04.398Z"}
+{"place_id":"geonames:2666199","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:05.728Z"}
+{"place_id":"geonames:1790630","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:07.214Z"}
+{"place_id":"geonames:3182164","error":"SyntaxError: Unterminated string in JSON at position 28 (line 2 column 27)","at":"2026-08-02T14:10:07.250Z"}
+{"place_id":"geonames:2191562","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:07.411Z"}
+{"place_id":"geonames:12747063","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:07.951Z"}
+{"place_id":"geonames:1815577","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:08.563Z"}
+{"place_id":"geonames:6324729","error":"SyntaxError: Unterminated string in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:08.952Z"}
+{"place_id":"geonames:4013708","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:11.084Z"}
+{"place_id":"admin1:mx.22","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:12.411Z"}
+{"place_id":"geonames:3452925","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:13.284Z"}
+{"place_id":"geonames:3094802","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:13.838Z"}
+{"place_id":"geonames:4014338","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:14.011Z"}
+{"place_id":"admin1:ar.10","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:14.045Z"}
+{"place_id":"geonames:2192362","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:14.883Z"}
+{"place_id":"admin1:cl.05","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:16.060Z"}
+{"place_id":"admin1:in.33","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:17.338Z"}
+{"place_id":"geonames:2735943","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:18.805Z"}
+{"place_id":"geonames:332288","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:19.821Z"}
+{"place_id":"geonames:2189529","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:20.193Z"}
+{"place_id":"geonames:2809346","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:20.230Z"}
+{"place_id":"admin1:it.08","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:20.915Z"}
+{"place_id":"geonames:3838233","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:21.140Z"}
+{"place_id":"geonames:3583361","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:22.401Z"}
+{"place_id":"geonames:1253986","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:24.083Z"}
+{"place_id":"geonames:336014","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:25.010Z"}
+{"place_id":"geonames:294801","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:26.316Z"}
+{"place_id":"geonames:3171728","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:10:26.928Z"}
+{"place_id":"geonames:2874225","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:26.986Z"}
+{"place_id":"geonames:2984114","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:27.313Z"}
+{"place_id":"geonames:3413829","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:28.788Z"}
+{"place_id":"geonames:2185018","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:28.909Z"}
+{"place_id":"geonames:2661552","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:30.223Z"}
+{"place_id":"geonames:2188164","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:10:31.649Z"}
+{"place_id":"geonames:3163392","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:32.992Z"}
+{"place_id":"geonames:1797333","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:33.281Z"}
+{"place_id":"geonames:160263","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:33.441Z"}
+{"place_id":"geonames:3652462","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:33.505Z"}
+{"place_id":"geonames:1859171","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:35.642Z"}
+{"place_id":"geonames:12747064","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:10:35.717Z"}
+{"place_id":"geonames:3911925","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:37.253Z"}
+{"place_id":"geonames:3617763","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:38.744Z"}
+{"place_id":"geonames:306571","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:39.538Z"}
+{"place_id":"geonames:2944388","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:40.064Z"}
+{"place_id":"geonames:315202","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:40.148Z"}
+{"place_id":"geonames:1818920","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:40.385Z"}
+{"place_id":"geonames:2996944","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:42.155Z"}
+{"place_id":"geonames:588409","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:42.505Z"}
+{"place_id":"geonames:3109718","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:43.656Z"}
+{"place_id":"geonames:2756669","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:45.189Z"}
+{"place_id":"geonames:4566880","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:10:46.191Z"}
+{"place_id":"geonames:3129136","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:10:47.167Z"}
+{"place_id":"geonames:1880668","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:47.434Z"}
+{"place_id":"country:gd","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:47.648Z"}
+{"place_id":"geonames:1799397","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:48.353Z"}
+{"place_id":"geonames:1819609","error":"SyntaxError: Unterminated string in JSON at position 29 (line 2 column 28)","at":"2026-08-02T14:10:49.067Z"}
+{"place_id":"geonames:3687925","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:10:50.172Z"}
+{"place_id":"geonames:2886242","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:10:52.160Z"}
+{"place_id":"geonames:3598132","error":"SyntaxError: Unterminated string in JSON at position 12 (line 2 column 11)","at":"2026-08-02T14:10:53.010Z"}
+{"place_id":"geonames:3530139","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:10:53.639Z"}
+{"place_id":"geonames:3601782","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:53.819Z"}
+{"place_id":"geonames:1852139","error":"SyntaxError: Unterminated string in JSON at position 30 (line 2 column 29)","at":"2026-08-02T14:10:54.952Z"}
+{"place_id":"geonames:3668605","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:10:55.160Z"}
+{"place_id":"geonames:2965140","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:56.762Z"}
+{"place_id":"geonames:3119841","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:10:56.999Z"}
+{"place_id":"geonames:1860672","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:10:59.296Z"}
+{"place_id":"geonames:2111684","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:00.052Z"}
+{"place_id":"geonames:2803201","error":"SyntaxError: Unterminated string in JSON at position 26 (line 2 column 25)","at":"2026-08-02T14:11:00.946Z"}
+{"place_id":"geonames:2940187","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:01.292Z"}
+{"place_id":"geonames:3165243","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:11:01.482Z"}
+{"place_id":"geonames:3037854","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:03.238Z"}
+{"place_id":"geonames:3874787","error":"SyntaxError: Unterminated string in JSON at position 40 (line 2 column 39)","at":"2026-08-02T14:11:03.334Z"}
+{"place_id":"geonames:2186313","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:04.560Z"}
+{"place_id":"geonames:2184397","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:05.463Z"}
+{"place_id":"geonames:3521305","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:07.017Z"}
+{"place_id":"geonames:7522199","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:08.264Z"}
+{"place_id":"geonames:3121881","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:11:08.811Z"}
+{"place_id":"geonames:2953504","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:08.811Z"}
+{"place_id":"geonames:1248991","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:09.586Z"}
+{"place_id":"geonames:13512674","error":"SyntaxError: Unterminated string in JSON at position 32 (line 2 column 31)","at":"2026-08-02T14:11:10.511Z"}
+{"place_id":"geonames:290030","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:10.868Z"}
+{"place_id":"geonames:1241622","error":"SyntaxError: Unterminated string in JSON at position 40 (line 2 column 39)","at":"2026-08-02T14:11:13.072Z"}
+{"place_id":"geonames:1246294","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:13.401Z"}
+{"place_id":"country:bm","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:11:15.003Z"}
+{"place_id":"geonames:3169561","error":"SyntaxError: Unterminated string in JSON at position 29 (line 2 column 28)","at":"2026-08-02T14:11:15.408Z"}
+{"place_id":"geonames:3613321","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:11:15.408Z"}
+{"place_id":"geonames:2270978","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:15.994Z"}
+{"place_id":"geonames:2262744","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:16.447Z"}
+{"place_id":"geonames:792680","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:17.826Z"}
+{"place_id":"geonames:2538475","error":"SyntaxError: Unterminated string in JSON at position 34 (line 2 column 33)","at":"2026-08-02T14:11:19.511Z"}
+{"place_id":"admin1:ec.07","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:11:19.733Z"}
+{"place_id":"geonames:3653693","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:11:21.898Z"}
+{"place_id":"geonames:3657509","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:11:21.997Z"}
+{"place_id":"geonames:3190261","error":"SyntaxError: Unterminated string in JSON at position 37 (line 3 column 4)","at":"2026-08-02T14:11:22.363Z"}
+{"place_id":"geonames:587084","error":"SyntaxError: Unterminated string in JSON at position 31 (line 2 column 30)","at":"2026-08-02T14:11:22.597Z"}
+{"place_id":"geonames:786714","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:23.153Z"}
+{"place_id":"geonames:287286","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:11:25.029Z"}
+{"place_id":"country:om","error":"SyntaxError: Expected double-quoted property name in JSON at position 34 (line 3 column 1)","at":"2026-08-02T14:11:26.103Z"}
+{"place_id":"geonames:286987","error":"SyntaxError: Unterminated string in JSON at position 29 (line 2 column 28)","at":"2026-08-02T14:11:26.911Z"}
+{"place_id":"country:ae","error":"SyntaxError: Expected double-quoted property name in JSON at position 33 (line 2 column 32)","at":"2026-08-02T14:11:28.432Z"}
+{"place_id":"geonames:1040652","error":"SyntaxError: Expected double-quoted property name in JSON at position 36 (line 3 column 3)","at":"2026-08-02T14:11:28.945Z"}

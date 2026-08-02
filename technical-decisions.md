@@ -11,7 +11,8 @@ The atlas turns 34,345 Tyler Cowen posts into an inspectable place index:
 4. Use conservative deterministic rules first; run model passes only where they add recall or review high-impact matches.
 5. Build country → region → city containment so broader writing appears below exact local results.
 6. Rank exact subjects first, then contained and broader context, then mentions. Audit relevance breaks ties.
-7. Publish static place and result payloads. Search runs locally in the browser; the map clusters the same records without a separate geographic database.
+7. Classify personal visits separately from place relevance, audit every affirmative claim, and propagate visits only up the geographic hierarchy.
+8. Publish static place and result payloads. Search runs locally in the browser; the map clusters the same records without a separate geographic database.
 
 | Stage | Input | Output | Main decision |
 |---|---:|---:|---|
@@ -20,6 +21,7 @@ The atlas turns 34,345 Tyler Cowen posts into an inspectable place index:
 | Deterministic classification | Titles and cleaned bodies | 18,006 classified posts | Prefer precision; keep misses in a ledger |
 | Recall pass | 14,562 initially unclassified records | 817 currently model-classified posts | Accept only source-verifiable, GeoNames-resolved evidence |
 | Top-place audit | Repeated top-ten edges for 100 high-volume places | 1,968 reviewed edges | Remove homonyms before they reach users |
+| Visit classification | Direct article evidence for 2,300 places | 321 audited direct visits; 463 places after upward propagation | Require first-person physical-presence evidence |
 | Published index | Accepted and inherited edges | 2,538 places with results; 41,997 article–place edges | Precompute bounded JSON payloads for a fast static site |
 
 The current build, input hashes, costs, thresholds, and output hashes are in [`reproduce/run.json`](reproduce/run.json). Record-level decisions are in [`data/classification-ledger.jsonl`](data/classification-ledger.jsonl) and [`data/article-place-links.jsonl`](data/article-place-links.jsonl).
@@ -181,6 +183,8 @@ Results are deduplicated by article and capped at 120 per place. The first tier-
 ## 9. Search, map, and delivery
 
 The browser downloads one compact place index. Autocomplete ranks exact names and aliases before prefixes and substrings, then uses result count, population, and a type preference to settle collisions. Countries and cities outrank same-named administrative regions while all candidates remain visible.
+
+The “Tyler visited” control filters both autocomplete and map coverage. A Gemini 2.5 Flash pass reviewed up to 60 travel-prioritized article excerpts per directly linked place. A separate Gemini 2.5 Pro pass received independently retrieved titles and source context for all 386 proposed positives. It retained 321, rejected 47 insufficient inferences, 13 wrong-speaker or wrong-place cases, and five future plans. Model-returned citations are replaced with the matching source quotation and article ID; an unmatched citation rejects the claim. Confirmed child places propagate upward, producing 463 searchable places. No evidence propagates downward, and `discussed` or `unknown` never means Tyler did not visit.
 
 The map uses MapLibre for the raster basemap and navigation. Coverage markers use Supercluster in the main browser thread and MapLibre DOM markers because the original worker-backed GeoJSON layer received 2,564 features but rendered none in production. At each zoom:
 

@@ -1,0 +1,21 @@
+{
+  "run_id": "place-visit-audit-v3",
+  "source_run": "place-visits-v2",
+  "prompt_version": "place-visit-audit-v3",
+  "prompt_sha256": "4ada8bdd332875661887c468d768c07a3fbc378a7d6d2975f6924d423c2dc0e3",
+  "model": "google/gemini-2.5-pro",
+  "candidates": 386,
+  "completed": 386,
+  "superseded_rows": 0,
+  "failures": 0,
+  "verdicts": {
+    "confirmed_visit": 321,
+    "insufficient_or_inferred": 47,
+    "wrong_speaker_or_place": 13,
+    "future_or_planned": 5
+  },
+  "actual_cost_usd": 5.574518750000003,
+  "max_cost_usd": 20,
+  "source_sha256": "a52e138134b84593cd469e76877f1a4fc994ecc358d74166466889442437e25c",
+  "created_at": "2026-08-02T14:41:04.541Z"
+}

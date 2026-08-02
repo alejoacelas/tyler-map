@@ -1,7 +1,7 @@
 <!--ai-->
 # Tyler Cowen Atlas
 
-Search or select a place, then read Tyler Cowen’s writing about it. Countries, first-level regions, and cities are resolved before articles are ranked, so `Georgia`, `Utah`, `Paris`, and `Turkey` have stable geographic meanings. Map dot size encodes reading count.
+Search or select a place, then read Tyler Cowen’s writing about it. Countries, first-level regions, and cities are resolved before articles are ranked, so `Georgia`, `Utah`, `Paris`, and `Turkey` have stable geographic meanings. The “Tyler visited” control filters search and the map to places supported by first-person evidence. Map dot size encodes reading count.
 
 Live site: [tyler-map.vercel.app](https://tyler-map.vercel.app)
 
@@ -22,5 +22,5 @@ python3 reproduce/build-place-index.py
 npm test
 ```
 
-The first command combines deterministic extraction, validated direct-place candidates, and the recorded top-location audit. Indirect relations such as a person’s origin remain review candidates until they have a source.
+The first command combines deterministic extraction, validated direct-place candidates, the recorded top-location audit, and the recorded visit ledger. Indirect relations such as a person’s origin remain review candidates until they have a source.
 <!--/ai-->

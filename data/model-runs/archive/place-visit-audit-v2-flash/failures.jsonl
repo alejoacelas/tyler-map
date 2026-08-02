@@ -1,0 +1,3 @@
+{"place_id":"geonames:1796236","error":"SyntaxError: Unterminated string in JSON at position 12 (line 2 column 11)","at":"2026-08-02T14:11:55.932Z"}
+{"place_id":"country:xk","error":"SyntaxError: Unterminated string in JSON at position 272 (line 5 column 39)","at":"2026-08-02T14:12:14.233Z"}
+{"place_id":"geonames:3521081","error":"SyntaxError: Unterminated string in JSON at position 267 (line 6 column 25)","at":"2026-08-02T14:12:15.143Z"}

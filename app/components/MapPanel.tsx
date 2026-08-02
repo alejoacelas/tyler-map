@@ -11,6 +11,7 @@ type Place = {
   adminName?: string | null; lat: number; lon: number; population: number; aliases: string[];
   resultCount: number; parentId: string | null;
   totalResultCount: number; categoryCount: number; topCategory: string | null; resultFile: string | null;
+  visitStatus: "confirmed" | "discussed" | "unknown"; visitSource: "direct" | "contained-place" | null;
 };
 type Result = { article_id: string; sourcePlace: Pick<Place, "id" | "name" | "type" | "lat" | "lon"> };
 type PointProperties = { placeId: string; name: string; count: number };
@@ -31,8 +32,9 @@ function compactCount(value: number) {
   return value >= 1000 ? `${Math.round(value / 100) / 10}k` : String(value);
 }
 
-export function MapPanel({ place, places, results, activeResult, onSelectResult, onSelectPlace, onExploreMap }: {
+export function MapPanel({ place, places, results, activeResult, visitedOnly, visitedCount, onSelectResult, onSelectPlace, onExploreMap }: {
   place: Place | null; places: Place[]; results: Result[]; activeResult: number;
+  visitedOnly: boolean; visitedCount: number;
   onSelectResult: (index: number) => void; onSelectPlace: (place: Place) => void; onExploreMap: () => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
@@ -50,7 +52,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
 
   useEffect(() => {
     placeById.current = new Map(places.map((item) => [item.id, item]));
-    const points: Array<Supercluster.PointFeature<PointProperties>> = places.filter((item) => item.resultFile && item.totalResultCount > 0).map((item) => ({
+    const points: Array<Supercluster.PointFeature<PointProperties>> = places.filter((item) => visitedOnly ? item.visitStatus === "confirmed" : item.resultFile && item.totalResultCount > 0).map((item) => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [item.lon, item.lat] },
       properties: { placeId: item.id, name: item.name, count: item.totalResultCount },
@@ -61,7 +63,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
       reduce: (accumulated, properties) => { accumulated.readings += properties.readings; },
     }).load(points);
     renderCoverage.current();
-  }, [places]);
+  }, [places, visitedOnly]);
 
   useEffect(() => {
     if (!container.current || mapRef.current) return;
@@ -176,7 +178,7 @@ export function MapPanel({ place, places, results, activeResult, onSelectResult,
 
   return <aside className="map-panel" aria-label="Atlas map">
     <div ref={container} className="map-canvas" />
-    <div className="map-caption"><span>{place ? place.name : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : "Dot size shows readings · clusters show places"}</small></div>
-    <div className="map-legend"><strong>Atlas coverage</strong><small>Dot size = readings · clusters = locations</small></div>
+    <div className="map-caption"><span>{place ? place.name : visitedOnly ? `${visitedCount} places Tyler visited` : "The world, according to Tyler"}</span><small>{place ? "Select a place or numbered reading" : visitedOnly ? "Confirmed from Tyler’s own writing" : "Dot size shows readings · clusters show places"}</small></div>
+    <div className="map-legend"><strong>{visitedOnly ? "Visited places" : "Atlas coverage"}</strong><small>{visitedOnly ? "Confirmed evidence · includes contained places" : "Dot size = readings · clusters = locations"}</small></div>
   </aside>;
 }

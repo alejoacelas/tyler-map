@@ -52,4 +52,17 @@ Every relation records classifier version, model, prompt hash, evidence, confide
 - `culture`
 
 Categories describe the article, not the location. They may overlap in the ledger; the interface shows the strongest category first.
+
+## Visit evidence
+
+Visit status is a separate claim from geographic relevance. A place is `confirmed` only when Tyler describes being there in the first person or gives comparably direct autobiographical evidence. A post about a place, an itinerary he recommends, a quotation from someone else, or a bare name match is not visit evidence.
+
+The model reviews direct article-place edges at the smallest resolved geographic unit. Each request contains bounded, article-labeled excerpts around that place's matches. It returns two independent judgments:
+
+- whether the text genuinely discusses the resolved place rather than a homonym;
+- whether the supplied text establishes that Tyler personally visited it.
+
+Every affirmative visit retains an exact quotation and article ID. Invalid quotations and unknown article IDs are rejected after the model call. A confirmed city visit propagates to its region and country; a region visit propagates to its country. Evidence never propagates downward. Sparse city evidence is not padded with country writing, because a country visit does not establish a city visit.
+
+The public index distinguishes `confirmed`, `discussed`, and `unknown`. `Discussed` means the place is genuinely discussed but no visit is established by the reviewed evidence. `Unknown` means the pass found neither a defensible discussion nor visit claim. Neither state means Tyler did not visit.
 <!--/ai-->

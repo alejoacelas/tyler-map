@@ -21,8 +21,13 @@ MODEL_RUN = ROOT / "data/model-runs/unclassified-flash-lite-v2/decisions.jsonl"
 MODEL_MANIFEST = MODEL_RUN.parent / "manifest.json"
 AUDIT_RUN = ROOT / "data/model-runs/top-place-audit-v1/decisions.jsonl"
 AUDIT_MANIFEST = AUDIT_RUN.parent / "manifest.json"
+VISITS = ROOT / "data/place-visits.jsonl"
+VISIT_RUN = ROOT / "data/model-runs/place-visits-v2/decisions.jsonl"
+VISIT_MANIFEST = ROOT / "data/model-runs/place-visits-v2/manifest.json"
+VISIT_AUDIT_RUN = ROOT / "data/model-runs/place-visit-audit-v3/decisions.jsonl"
+VISIT_AUDIT_MANIFEST = ROOT / "data/model-runs/place-visit-audit-v3/manifest.json"
 
-SCHEMA_VERSION = "place-index-v1"
+SCHEMA_VERSION = "place-index-v2"
 MAX_RESULTS_PER_PLACE = 120
 
 COUNTRY_ALIASES = {
@@ -470,6 +475,32 @@ def main():
     overrides = json.loads(OVERRIDES.read_text())
     model_manifest = json.loads(MODEL_MANIFEST.read_text()) if MODEL_MANIFEST.exists() else None
     audit_manifest = json.loads(AUDIT_MANIFEST.read_text()) if AUDIT_MANIFEST.exists() else None
+    visit_manifest = json.loads(VISIT_MANIFEST.read_text()) if VISIT_MANIFEST.exists() else None
+    visit_audit_manifest = json.loads(VISIT_AUDIT_MANIFEST.read_text()) if VISIT_AUDIT_MANIFEST.exists() else None
+    visit_by_place = {
+        row["place_id"]: row
+        for row in (json.loads(line) for line in VISITS.read_text().splitlines() if line.strip())
+    } if VISITS.exists() else {}
+    required_visit_artifacts = [VISITS, VISIT_RUN, VISIT_MANIFEST, VISIT_AUDIT_RUN, VISIT_AUDIT_MANIFEST]
+    missing_visit_artifacts = [str(path.relative_to(ROOT)) for path in required_visit_artifacts if not path.exists()]
+    if missing_visit_artifacts:
+        raise RuntimeError(f"Missing required visit artifacts: {', '.join(missing_visit_artifacts)}")
+    place_ids = set(all_places)
+    if set(visit_by_place) != place_ids or len(visit_by_place) != len(all_places):
+        raise RuntimeError("Visit ledger must contain exactly one row for every current place ID.")
+    if visit_manifest.get("completed") != visit_manifest.get("candidate_places") or visit_manifest.get("failures"):
+        raise RuntimeError("Direct visit classification is incomplete; rerun classify-place-visits.mjs.")
+    if visit_audit_manifest.get("completed") != visit_audit_manifest.get("candidates") or visit_audit_manifest.get("failures"):
+        raise RuntimeError("Visit audit is incomplete; rerun audit-place-visits.mjs.")
+    if visit_audit_manifest.get("source_sha256") != sha256(VISIT_RUN):
+        raise RuntimeError("Visit audit does not match the current direct-classification decisions.")
+    for row in visit_by_place.values():
+        if row.get("status") not in {"confirmed", "discussed", "unknown"}:
+            raise RuntimeError(f"Invalid visit status for {row['place_id']}")
+        if row.get("status") == "confirmed" and not row.get("evidence"):
+            raise RuntimeError(f"Confirmed visit lacks evidence for {row['place_id']}")
+        if row.get("source") == "direct" and row.get("audit_verdict") != "confirmed_visit":
+            raise RuntimeError(f"Direct visit lacks affirmative audit for {row['place_id']}")
     override_places = {normalized(place["name"]): place for place in all_places.values()}
 
     articles = {}
@@ -686,6 +717,8 @@ def main():
             "population": place["population"], "aliases": place["aliases"][:8], "resultCount": count,
             "totalResultCount": result_totals.get(place["id"], 0),
             "categoryCount": len(category_counts), "topCategory": category_counts.most_common(1)[0][0] if category_counts else None,
+            "visitStatus": visit_by_place.get(place["id"], {}).get("status", "unknown"),
+            "visitSource": visit_by_place.get(place["id"], {}).get("source"),
             "resultFile": f"/data/results/{place['id'].replace(':', '--')}.json" if count else None,
         })
     compact_places.sort(key=lambda place: (-bool(place["resultCount"]), -place["resultCount"], -place["population"], place["name"]))
@@ -730,10 +763,25 @@ def main():
                 "completed": audit_manifest.get("completed") if audit_manifest else len(AUDIT_DECISIONS),
                 "actualCostUsd": audit_manifest.get("actual_cost_usd") if audit_manifest else None,
             } if AUDIT_RUN.exists() else None,
+            "placeVisits": {
+                "path": str(VISITS), "sha256": sha256(VISITS),
+                "model": visit_manifest.get("model") if visit_manifest else None,
+                "promptVersion": visit_manifest.get("prompt_version") if visit_manifest else None,
+                "completed": visit_manifest.get("completed") if visit_manifest else None,
+                "actualCostUsd": visit_manifest.get("actual_cost_usd") if visit_manifest else None,
+            } if VISITS.exists() else None,
+            "placeVisitAudit": {
+                "model": visit_audit_manifest.get("model") if visit_audit_manifest else None,
+                "promptVersion": visit_audit_manifest.get("prompt_version") if visit_audit_manifest else None,
+                "completed": visit_audit_manifest.get("completed") if visit_audit_manifest else None,
+                "verdicts": visit_audit_manifest.get("verdicts") if visit_audit_manifest else None,
+                "actualCostUsd": visit_audit_manifest.get("actual_cost_usd") if visit_audit_manifest else None,
+            } if visit_audit_manifest else None,
         },
         "counts": {
             "corpusArticles": len(ledger), "displayArticles": len(articles), "places": len(compact_places),
             "placesWithResults": len(results), "articlePlaceLinks": len(links), "audit": dict(audit_stats), **stats,
+            "visitStatus": dict(Counter(row.get("status", "unknown") for row in visit_by_place.values())),
         },
         "thresholds": {"maxResultsPerPlace": MAX_RESULTS_PER_PLACE, "supportedCities": "GeoNames cities15000"},
         "outputs": {},
@@ -744,7 +792,7 @@ def main():
             "The canonical corpus ends 2026-07-12 and needs an incremental refresh.",
         ],
     }
-    for path in [*outputs, ROOT / "data/article-place-links.jsonl", ROOT / "data/classification-ledger.jsonl"]:
+    for path in [*outputs, ROOT / "data/article-place-links.jsonl", ROOT / "data/classification-ledger.jsonl", *([VISITS] if VISITS.exists() else [])]:
         run["outputs"][str(path.relative_to(ROOT))] = {"sha256": sha256(path), "bytes": path.stat().st_size}
     run["outputs"]["public/data/results/"] = {
         "files": len(results), "bytes": sum(path.stat().st_size for path in results_dir.glob("*.json"))

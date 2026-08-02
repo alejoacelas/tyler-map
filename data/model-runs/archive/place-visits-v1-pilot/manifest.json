@@ -1,0 +1,22 @@
+{
+  "run_id": "place-visits-v1",
+  "prompt_version": "place-visits-v1",
+  "prompt_sha256": "3921405fe615e82c885a649ed9a5a3e4247c3a180d3333cece64fc2fc470d221",
+  "model": "google/gemini-2.5-flash",
+  "candidate_places": 50,
+  "completed": 47,
+  "failures": 3,
+  "concurrency": 8,
+  "max_articles_per_place": 24,
+  "max_input_chars": 28000,
+  "actual_cost_usd": 0.1504389,
+  "max_cost_usd": 2,
+  "counts": {
+    "confirmed": 43,
+    "discussed": 8,
+    "unknown": 37029
+  },
+  "corpus_sha256": "2e0b2e3b192750b0479730cd0aa56933d3472095cb836a6ec2d2b68caf13306a",
+  "links_sha256": "a1fb42a1590a37414902343c27e1a6d6bdcc618ea08887bffd0b87d6349e158f",
+  "created_at": "2026-08-02T13:58:06.082Z"
+}

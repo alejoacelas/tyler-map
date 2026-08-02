@@ -1,0 +1,31 @@
+{"place_id":"country:gh","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T13:59:52.641Z"}
+{"place_id":"country:ae","error":"SyntaxError: Unterminated string in JSON at position 56 (line 3 column 20)","at":"2026-08-02T14:00:33.182Z"}
+{"place_id":"geonames:5150529","error":"SyntaxError: Expected ',' or '}' after property value in JSON at position 121 (line 5 column 20)","at":"2026-08-02T14:00:38.150Z"}
+{"place_id":"geonames:4893591","error":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)","at":"2026-08-02T14:01:06.198Z"}
+{"place_id":"admin1:bf.03","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:01:06.636Z"}
+{"place_id":"admin1:ve.15","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:01:43.077Z"}
+{"place_id":"geonames:2643339","error":"SyntaxError: Expected ',' or '}' after property value in JSON at position 122 (line 5 column 18)","at":"2026-08-02T14:01:45.866Z"}
+{"place_id":"geonames:4669635","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:01:49.270Z"}
+{"place_id":"geonames:2636882","error":"SyntaxError: Unterminated string in JSON at position 74 (line 3 column 35)","at":"2026-08-02T14:01:49.293Z"}
+{"place_id":"geonames:108410","error":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)","at":"2026-08-02T14:02:16.957Z"}
+{"place_id":"geonames:3637012","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:02:36.389Z"}
+{"place_id":"admin1:nz.f4","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:02:59.133Z"}
+{"place_id":"geonames:88319","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:03:07.252Z"}
+{"place_id":"geonames:2881485","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:03:14.913Z"}
+{"place_id":"admin1:lb.05","error":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)","at":"2026-08-02T14:03:25.276Z"}
+{"place_id":"geonames:3037543","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:04:01.532Z"}
+{"place_id":"geonames:108410","error":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)","at":"2026-08-02T14:04:50.116Z"}
+{"place_id":"geonames:5368361","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:19:36.411Z"}
+{"place_id":"geonames:524901","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:19:47.351Z"}
+{"place_id":"geonames:5309842","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:20:22.842Z"}
+{"place_id":"country:bb","error":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)","at":"2026-08-02T14:21:00.151Z"}
+{"place_id":"admin1:et.50","error":"SyntaxError: Unterminated string in JSON at position 66 (line 3 column 16)","at":"2026-08-02T14:22:20.823Z"}
+{"place_id":"geonames:347497","error":"SyntaxError: Unterminated string in JSON at position 66 (line 3 column 16)","at":"2026-08-02T14:23:06.251Z"}
+{"place_id":"geonames:2990440","error":"SyntaxError: Unterminated string in JSON at position 62 (line 3 column 23)","at":"2026-08-02T14:23:10.155Z"}
+{"place_id":"geonames:1607978","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:23:26.017Z"}
+{"place_id":"geonames:933773","error":"SyntaxError: Unterminated string in JSON at position 74 (line 3 column 35)","at":"2026-08-02T14:23:36.296Z"}
+{"place_id":"geonames:2043837","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:23:36.330Z"}
+{"place_id":"geonames:3919968","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:27:37.264Z"}
+{"place_id":"geonames:1277333","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:28:01.536Z"}
+{"place_id":"geonames:2110560","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:28:34.003Z"}
+{"place_id":"geonames:2110560","error":"SyntaxError: Unterminated string in JSON at position 15 (line 2 column 14)","at":"2026-08-02T14:29:35.334Z"}

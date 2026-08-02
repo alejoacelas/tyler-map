@@ -18,6 +18,8 @@ type Place = {
   totalResultCount: number;
   categoryCount: number;
   topCategory: string | null;
+  visitStatus: "confirmed" | "discussed" | "unknown";
+  visitSource: "direct" | "contained-place" | null;
   parentId: string | null;
   resultFile: string | null;
 };
@@ -93,6 +95,7 @@ export default function Home() {
   const [fallback, setFallback] = useState<string | null>(null);
   const [mapOpen, setMapOpen] = useState(false);
   const [mapExploring, setMapExploring] = useState(false);
+  const [visitedOnly, setVisitedOnly] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -110,7 +113,9 @@ export default function Home() {
   }, []);
 
   const countries = useMemo(() => new Map(places.filter((item) => item.type === "country").map((item) => [item.country, item])), [places]);
-  const suggestions = useMemo(() => suggestionsOpen ? searchPlaces(places, query).filter((candidate) => candidate.id !== place?.id) : [], [places, query, place?.id, suggestionsOpen]);
+  const eligiblePlaces = useMemo(() => visitedOnly ? places.filter((item) => item.visitStatus === "confirmed") : places, [places, visitedOnly]);
+  const visitedCount = useMemo(() => places.filter((item) => item.visitStatus === "confirmed").length, [places]);
+  const suggestions = useMemo(() => suggestionsOpen ? searchPlaces(eligiblePlaces, query).filter((candidate) => candidate.id !== place?.id) : [], [eligiblePlaces, query, place?.id, suggestionsOpen]);
   const visibleResults = useMemo(() => category === "all" ? results : results.filter((result) => result.category === category), [results, category]);
 
   async function choosePlace(next: Place, source = places) {
@@ -159,13 +164,28 @@ export default function Home() {
     if (event.key === "Escape") setSuggestionsOpen(false);
   }
 
+  function toggleVisitedOnly() {
+    const next = !visitedOnly;
+    setVisitedOnly(next);
+    setSuggestionsOpen(Boolean(query));
+    if (next && place?.visitStatus !== "confirmed") {
+      setPlace(null); setResults([]); setQuery(""); setCategory("all"); setFallback(null); setMapOpen(false); setMapExploring(true);
+      window.history.replaceState(null, "", "/");
+    }
+  }
+
   return (
     <main className={`${place ? "atlas selected" : "atlas landing"}${mapOpen ? " map-open" : ""}${mapExploring ? " map-exploring" : ""}`}>
       <header className="topbar">
         <button className="brand" onClick={() => { setPlace(null); setResults([]); setQuery(""); setSuggestionsOpen(false); setMapOpen(false); setMapExploring(false); window.history.replaceState(null, "", "/"); searchRef.current?.focus(); }}>
           <span className="brand-mark">TC</span><span>Tyler Cowen Atlas</span>
         </button>
-        <span className="edition">34,345 posts · 2003–2026</span>
+        <div className="topbar-meta">
+          <span className="edition">34,345 posts · 2003–2026</span>
+          <button className={`visit-filter${visitedOnly ? " active" : ""}`} aria-pressed={visitedOnly} onClick={toggleVisitedOnly}>
+            <span className="visit-filter-dot" aria-hidden="true"></span><span>Tyler visited</span>{visitedCount > 0 && <strong>{visitedCount}</strong>}
+          </button>
+        </div>
       </header>
 
       <section className="search-layer" aria-label="Find a place">
@@ -185,18 +205,19 @@ export default function Home() {
               return <button key={suggestion.id} className={index === selectedSuggestion ? "active" : ""} role="option" aria-selected={index === selectedSuggestion}
                 onMouseEnter={() => setSelectedSuggestion(index)} onClick={() => void choosePlace(suggestion)}>
                 <span className="suggestion-icon">{suggestion.type === "country" ? "◎" : suggestion.type === "admin1" ? "◉" : "•"}</span>
-                <span><strong>{suggestion.name}</strong><small>{suggestion.type !== "country" && location ? `${location} · ` : ""}{suggestion.type === "admin1" ? "state / region" : suggestion.type} · {suggestion.totalResultCount ? `${suggestion.totalResultCount} readings` : "nearby readings"}</small></span>
+                <span><strong>{suggestion.name}{suggestion.visitStatus === "confirmed" && <i className="visited-tag">Visited</i>}</strong><small>{suggestion.type !== "country" && location ? `${location} · ` : ""}{suggestion.type === "admin1" ? "state / region" : suggestion.type} · {suggestion.totalResultCount ? `${suggestion.totalResultCount} readings` : "nearby readings"}</small></span>
                 <span className="return">↵</span>
               </button>;
             })}
           </div>}
-          {!place && !mapExploring && <div className="examples">{EXAMPLES.map((example) => <button key={example} onClick={() => { setQuery(example); const match = searchPlaces(places, example)[0]; if (match) void choosePlace(match); }}>{example}</button>)}</div>}
+          {visitedOnly && query && suggestionsOpen && suggestions.length === 0 && <div className="filter-empty" role="status" aria-live="polite">No confirmed visit matches this search.</div>}
+          {!place && !mapExploring && <div className="examples">{EXAMPLES.map((example) => <button key={example} onClick={() => { setQuery(example); const match = searchPlaces(eligiblePlaces, example)[0]; if (match) void choosePlace(match); }}>{example}</button>)}</div>}
         </div>
       </section>
 
       {place && <section className="reading-panel">
         <div className="place-heading">
-          <p className="overline">{place.type === "admin1" ? "State / region" : place.type} · {countries.get(place.country)?.name ?? place.country}</p>
+          <p className="overline">{place.type === "admin1" ? "State / region" : place.type} · {countries.get(place.country)?.name ?? place.country}{place.visitStatus === "confirmed" && <span className="place-visited">Tyler visited</span>}</p>
           <h1>{place.name}</h1>
           <p>{loading ? "Reading the atlas…" : `${visibleResults.length} ${visibleResults.length === 1 ? "reading" : "readings"}`}</p>
         </div>
@@ -217,7 +238,7 @@ export default function Home() {
       </section>}
 
       {place && <button className="mobile-view-toggle" onClick={() => setMapOpen((open) => !open)}>{mapOpen ? "Readings" : "Map"}</button>}
-      <MapPanel place={place} places={places} results={visibleResults} activeResult={activeResult} onSelectResult={setActiveResult} onSelectPlace={(next) => void choosePlace(next)} onExploreMap={() => { if (!place) { setMapExploring(true); setSuggestionsOpen(false); } }} />
+      <MapPanel place={place} places={places} results={visibleResults} activeResult={activeResult} visitedOnly={visitedOnly} visitedCount={visitedCount} onSelectResult={setActiveResult} onSelectPlace={(next) => void choosePlace(next)} onExploreMap={() => { if (!place) { setMapExploring(true); setSuggestionsOpen(false); } }} />
     </main>
   );
 }

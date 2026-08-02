@@ -12,8 +12,13 @@
 ## Build
 
 ```sh
+node --env-file=.env reproduce/classify-place-visits.mjs
+node --env-file=.env reproduce/audit-place-visits.mjs
+node --env-file=.env reproduce/classify-place-visits.mjs
 python3 reproduce/build-place-index.py
 ```
+
+The first visit pass reviews all 2,300 places with direct article evidence, independently classifying genuine discussion and personal presence. The audit rechecks every affirmative visit under a stricter prompt. The second invocation rebuilds `data/place-visits.jsonl` from the completed audit, propagating confirmed child visits upward but never downward. All 37,080 places retain an explicit `confirmed`, `discussed`, or `unknown` state.
 
 The script writes:
 
@@ -21,6 +26,7 @@ The script writes:
 - `public/data/results/*.json`: one ranked result payload per place with evidence and displayed article fields.
 - `data/article-place-links.jsonl`: the complete auditable relation ledger.
 - `data/classification-ledger.jsonl`: one state and reason per corpus article.
+- `data/place-visits.jsonl`: one visit state per place with source evidence for affirmative claims.
 - `reproduce/run.json`: input hashes, counts, thresholds, and output hashes.
 
 ## Checks
@@ -30,7 +36,7 @@ python3 reproduce/evaluate.py
 npm test
 ```
 
-The evaluation includes countries, regions, cities, aliases, ambiguous names, hierarchy, indirect relations, one-result places, homonym exclusions, and no-result places. It reports failures rather than converting them into empty success. [data-gaps.md](data-gaps.md) states what the index still cannot support and the threshold for another pass.
+The evaluation includes countries, regions, cities, aliases, ambiguous names, hierarchy, indirect relations, visit-state propagation, one-result places, homonym exclusions, and no-result places. It reports failures rather than converting them into empty success. [data-gaps.md](data-gaps.md) states what the index still cannot support and the threshold for another pass.
 
 ## Model pass
 

@@ -1,0 +1,17 @@
+{
+  "run_id": "place-visit-audit-v1",
+  "source_run": "place-visits-v2",
+  "prompt_version": "place-visit-audit-v1",
+  "prompt_sha256": "4ada8bdd332875661887c468d768c07a3fbc378a7d6d2975f6924d423c2dc0e3",
+  "model": "google/gemini-2.5-pro",
+  "candidates": 391,
+  "completed": 1,
+  "failures": 390,
+  "verdicts": {
+    "confirmed_visit": 1
+  },
+  "actual_cost_usd": 0.00667,
+  "max_cost_usd": 10,
+  "source_sha256": "b2efa81a1e95ea3afb75f50b9065fb7f92b0c5a34b46d3e7d7d57a49214cb2d3",
+  "created_at": "2026-08-02T14:11:28.951Z"
+}
