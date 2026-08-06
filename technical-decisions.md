@@ -1,4 +1,8 @@
-<!--ai-->
+---
+human_edit_tracking:
+  enabled: true
+  history: []
+---
 # How the Tyler Cowen Atlas was built
 
 ## Summary
@@ -228,4 +232,3 @@ npm run lint
 ```
 
 More detailed method files remain in [`reproduce/`](reproduce/), but this document is the single overview of the system and its main decisions.
-<!--/ai-->
