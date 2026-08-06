@@ -1,8 +1,3 @@
----
-human_edit_tracking:
-  enabled: true
-  history: []
----
 # How the Tyler Cowen Atlas was built
 
 ## Summary
