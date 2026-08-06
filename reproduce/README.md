@@ -1,8 +1,4 @@
----
-human_edit_tracking:
-  enabled: true
-  history: []
----
+<!--ai-->
 # Reproduce the atlas
 
 ## Inputs
@@ -45,3 +41,4 @@ The evaluation includes countries, regions, cities, aliases, ambiguous names, hi
 ## Model pass
 
 The deterministic pass keeps explicit geographic references. Three OpenRouter pilots establish the cost and failure profile before a bounded model pass reviews records with no deterministic place. A second Gemini 2.5 Flash pass audits up to ten direct edges for each of the 100 highest-volume places; its verdict removes false matches and its relevance score breaks ranking ties. Model output reaches the site only after exact evidence and GeoNames resolution; indirect entity ties remain candidates until a source-backed review. See [classification-spec.md](classification-spec.md) and [model-pilot-report.md](model-pilot-report.md).
+<!--/ai-->

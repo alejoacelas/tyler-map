@@ -1,8 +1,4 @@
----
-human_edit_tracking:
-  enabled: true
-  history: []
----
+<!--ai-->
 # Classification specification
 
 ## Product rule
@@ -69,3 +65,4 @@ The model reviews direct article-place edges at the smallest resolved geographic
 Every affirmative visit retains an exact quotation and article ID. Invalid quotations and unknown article IDs are rejected after the model call. A confirmed city visit propagates to its region and country; a region visit propagates to its country. Evidence never propagates downward. Sparse city evidence is not padded with country writing, because a country visit does not establish a city visit.
 
 The public index distinguishes `confirmed`, `discussed`, and `unknown`. `Discussed` means the place is genuinely discussed but no visit is established by the reviewed evidence. `Unknown` means the pass found neither a defensible discussion nor visit claim. Neither state means Tyler did not visit.
+<!--/ai-->
