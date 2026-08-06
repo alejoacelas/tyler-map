@@ -1,4 +1,8 @@
-<!--ai-->
+---
+human_edit_tracking:
+  enabled: true
+  history: []
+---
 # Tyler Cowen Atlas
 
 Search or select a place, then read Tyler Cowen’s writing about it. Countries, first-level regions, and cities are resolved before articles are ranked, so `Georgia`, `Utah`, `Paris`, and `Turkey` have stable geographic meanings. The “Tyler visited” control filters search and the map to places supported by first-person evidence. Map dot size encodes reading count.
@@ -23,4 +27,3 @@ npm test
 ```
 
 The first command combines deterministic extraction, validated direct-place candidates, the recorded top-location audit, and the recorded visit ledger. Indirect relations such as a person’s origin remain review candidates until they have a source.
-<!--/ai-->

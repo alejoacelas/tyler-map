@@ -1,4 +1,8 @@
-<!--ai-->
+---
+human_edit_tracking:
+  enabled: true
+  history: []
+---
 # Data gaps
 
 The ledgers preserve every decision. `data/classification-ledger.jsonl` has one row per corpus article; `data/article-place-links.jsonl` has every accepted article–place edge with its classifier, evidence, confidence, tier, and review state. The model run directories retain decisions, failures, token use, actual cost, prompt version, and input hashes.
@@ -24,4 +28,3 @@ The ledgers preserve every decision. `data/classification-ledger.jsonl` has one 
 ## What to measure next
 
 Review a stratified sample of accepted and rejected model candidates. The next pass is justified when the lower bound of accepted precision remains above 98% and a rejected-sample audit shows recoverable geographic recall above two percentage points. Otherwise, improve the resolver before buying more inference.
-<!--/ai-->
