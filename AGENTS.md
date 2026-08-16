@@ -1,8 +1,3 @@
----
-human_edit_tracking:
-  enabled: true
-  history: []
----
 <!-- stripe-projects-cli managed:agents-md:start -->
 ## Stripe Projects CLI
 
