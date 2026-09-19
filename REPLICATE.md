@@ -58,3 +58,13 @@ The evaluation includes countries, regions, cities, aliases, ambiguous names, hi
 #### Model pass
 
 The deterministic pass keeps explicit geographic references. Three OpenRouter pilots establish the cost and failure profile before a bounded model pass reviews records with no deterministic place. A second Gemini 2.5 Flash pass audits up to ten direct edges for each of the 100 highest-volume places; its verdict removes false matches and its relevance score breaks ranking ties. Model output reaches the site only after exact evidence and GeoNames resolution; indirect entity ties remain candidates until a source-backed review. See [classification-spec.md](docs/classification-spec.md) and [model-pilot-report.md](docs/model-pilot-report.md).
+
+## Retire construction folders
+
+Alejo wanted all `reproduce` folders under `~/best` transitioned to `REPLICATE.md`.
+
+- Consolidated the existing records and updated references for `reproduce`. Preserved scripts, data and maintained procedures in their own folders.
+- Original tracked files remain in Git at `4b077fec36df285771b1866df8755166cc8f3381`; a full local backup, including ignored files, is at `/Users/alejo/.local/state/reproduce-migration/2026-09-19-_qyg4u7a/before/projects/others/archive/2026-08-tyler-cowen-map`.
+- All 21 evaluation queries and the location-index test passed after updating script, input and output paths.
+
+Agent session 01a0bb8d-6d31-76d3-ac4e-aca4c5dfce64 · Commits d5583d436b093b97dee4143aeeac35e2256c0279
