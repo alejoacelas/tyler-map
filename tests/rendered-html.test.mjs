@@ -52,7 +52,7 @@ test("server-renders the atlas shell", async () => withServer(async (response) =
 test("ships a reproducible location index", async () => {
   const [places, run] = await Promise.all([
     readFile(new URL("../public/data/places.json", import.meta.url), "utf8").then(JSON.parse),
-    readFile(new URL("../reproduce/run.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../data/index-run.json", import.meta.url), "utf8").then(JSON.parse),
   ]);
   assert.ok(places.length > 30_000);
   assert.ok(places.some((place) => place.name === "Turkey" && place.resultCount > 0));

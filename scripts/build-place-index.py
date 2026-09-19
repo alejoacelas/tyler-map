@@ -13,9 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CORPUS = ROOT.parent / "2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl"
-CITIES = ROOT / "reproduce/inputs/cities15000.txt"
-COUNTRIES = ROOT / "reproduce/inputs/countryInfo.txt"
-ADMINS = ROOT / "reproduce/inputs/admin1CodesASCII.txt"
+CITIES = ROOT / "data/geonames/cities15000.txt"
+COUNTRIES = ROOT / "data/geonames/countryInfo.txt"
+ADMINS = ROOT / "data/geonames/admin1CodesASCII.txt"
 OVERRIDES = ROOT / "data/curated-overrides.json"
 MODEL_RUN = ROOT / "data/model-runs/unclassified-flash-lite-v2/decisions.jsonl"
 MODEL_MANIFEST = MODEL_RUN.parent / "manifest.json"
@@ -797,7 +797,7 @@ def main():
     run["outputs"]["public/data/results/"] = {
         "files": len(results), "bytes": sum(path.stat().st_size for path in results_dir.glob("*.json"))
     }
-    (ROOT / "reproduce/run.json").write_text(json.dumps(run, ensure_ascii=False, indent=2) + "\n")
+    (ROOT / "data/index-run.json").write_text(json.dumps(run, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(run["counts"], indent=2))
 
 

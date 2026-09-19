@@ -82,5 +82,5 @@ output.extend([
     "Gemini 2.5 Flash Lite is the full-pass candidate extractor. It surfaced the most new candidates in the shared sample at $0.0175, but nine malformed outputs and 27 schema contradictions make its labels unsuitable as final data. The production gate therefore resolves place names against GeoNames, verifies normalized evidence, requires the place or an accepted demonym inside that evidence, deduplicates edges, rejects incidental or low-centrality claims, and fixes accepted links at tier 3.", "",
     "DeepSeek V3.2 produced the cleanest evidence spans but three final failures and fewer new candidates. GPT-4.1 Nano completed after retries at the lowest cost, but its evidence validity and direct recall were lowest. Neither improves the product enough to replace the validation gate.",
 ])
-(ROOT / "reproduce/model-pilot-report.md").write_text("\n".join(output) + "\n")
+(ROOT / "docs/model-pilot-report.md").write_text("\n".join(output) + "\n")
 print(json.dumps(rows, indent=2))

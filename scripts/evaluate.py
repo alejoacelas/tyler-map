@@ -16,7 +16,7 @@ def norm(value):
 
 
 places = json.loads((ROOT / "public/data/places.json").read_text())
-queries = json.loads((ROOT / "reproduce/evaluation-queries.json").read_text())
+queries = json.loads((ROOT / "tests/evaluation-queries.json").read_text())
 failures = []
 
 for case in queries:

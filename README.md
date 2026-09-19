@@ -9,7 +9,8 @@ Live site: [tyler-map.vercel.app](https://tyler-map.vercel.app)
 - `app/`: the search-first website and public evaluation endpoint.
 - `public/data/`: the derived place index served by the site.
 - `data/`: manual overrides and review data.
-- `reproduce/`: the classification method, scripts, source lineage, checks, and gaps.
+- `REPLICATE.md`: construction history and source lineage.
+- `scripts/`, `docs/`, and `tests/`: rebuild scripts, classification methods, checks, and gaps.
 - [`technical-decisions.md`](technical-decisions.md): one overview of corpus acquisition, cleaning, place resolution, model audits, hierarchy, ranking, interface, and remaining gaps.
 
 The canonical article corpus remains in `../2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl`. This project derives links from it; it does not fork or rewrite it.
@@ -17,7 +18,7 @@ The canonical article corpus remains in `../2026-07-tyler-cowen-search/corpus/un
 ## Reproduce
 
 ```sh
-python3 reproduce/build-place-index.py
+python3 scripts/build-place-index.py
 npm test
 ```
 

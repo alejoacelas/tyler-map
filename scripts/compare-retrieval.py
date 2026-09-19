@@ -45,5 +45,5 @@ for query in QUERIES:
             lines.append(f"- {post['title']}")
     lines.append("")
 
-(ROOT / "reproduce/evaluation-report.md").write_text("\n".join(lines).rstrip() + "\n")
-print(f"wrote {ROOT / 'reproduce/evaluation-report.md'}")
+(ROOT / "docs/evaluation-report.md").write_text("\n".join(lines).rstrip() + "\n")
+print(f"wrote {ROOT / 'docs/evaluation-report.md'}")

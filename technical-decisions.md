@@ -23,7 +23,7 @@ The atlas turns 34,345 Tyler Cowen posts into an inspectable place index:
 | Visit classification | Direct article evidence for 2,300 places | 321 audited direct visits; 463 places after upward propagation | Require first-person physical-presence evidence |
 | Published index | Accepted and inherited edges | 2,538 places with results; 41,997 article–place edges | Precompute bounded JSON payloads for a fast static site |
 
-The current build, input hashes, costs, thresholds, and output hashes are in [`reproduce/run.json`](reproduce/run.json). Record-level decisions are in [`data/classification-ledger.jsonl`](data/classification-ledger.jsonl) and [`data/article-place-links.jsonl`](data/article-place-links.jsonl).
+The current build, input hashes, costs, thresholds, and output hashes are in [`data/index-run.json`](data/index-run.json). Record-level decisions are in [`data/classification-ledger.jsonl`](data/classification-ledger.jsonl) and [`data/article-place-links.jsonl`](data/article-place-links.jsonl).
 
 ## 1. Corpus acquisition
 
@@ -220,10 +220,10 @@ Important gaps remain:
 Run the pipeline with:
 
 ```sh
-python3 reproduce/build-place-index.py
-python3 reproduce/evaluate.py
+python3 scripts/build-place-index.py
+python3 scripts/evaluate.py
 npm test
 npm run lint
 ```
 
-More detailed method files remain in [`reproduce/`](reproduce/), but this document is the single overview of the system and its main decisions.
+More detailed method files remain in [`docs/`](docs/) and [`REPLICATE.md`](REPLICATE.md#construction-records), but this document is the single overview of the system and its main decisions.
