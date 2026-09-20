@@ -226,4 +226,4 @@ npm test
 npm run lint
 ```
 
-More detailed method files remain in [`docs/`](docs/) and [`REPLICATE.md`](REPLICATE.md#construction-records), but this document is the single overview of the system and its main decisions.
+More detailed method files remain in [`docs/`](docs/) and [`DECISIONS.md`](DECISIONS.md#core-decisions), but this document is the single overview of the system and its main decisions.
