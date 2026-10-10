@@ -1,6 +1,7 @@
 {
   "version": 1,
   "project": {
+    "catalog": "prod",
     "initializedAt": "2026-08-01T16:02:56.111Z",
     "merchantDisplayName": "Cliver",
     "merchantId": "acct_1TMDwH9cODHbqLki",
@@ -9,13 +10,13 @@
   },
   "providers": {
     "openrouter": {
-      "accountRequestId": "facctrq_61V93L4MedOgusKcb16UVbtd8SSQplWylVOriQ0e88HA",
+      "accountRequestId": "facctrq_61VR83DM0Snv4a95n16UVbtd8SSQplWylVOriQ0e8Kbg",
       "configuration": {},
-      "linkedAt": "2026-08-01T16:03:27.532Z",
+      "linkedAt": "2026-09-20T12:43:44.640Z",
       "providerId": "prvdr_61URImmFACEuDHEx651IO",
       "providerName": "OpenRouter",
       "redirectUrl": null,
-      "requestedAt": "2026-08-01T16:03:27.531Z",
+      "requestedAt": "2026-09-20T12:43:44.640Z",
       "status": "complete"
     }
   },
