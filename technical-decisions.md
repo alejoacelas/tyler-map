@@ -52,7 +52,7 @@ The atlas consumes the canonical corpus from the sibling `2026-07-tyler-cowen-se
 
 The unified corpus contains 34,345 records: 34,226 complete captures, 29 partial indexed snippets, and 90 title-only placeholders. Reused historical URLs retain distinct stable records, so 34,345 records correspond to 34,333 canonical URLs.
 
-The upstream acquisition scripts and record-level audits are documented in [`../2026-07-tyler-cowen-search/corpus/README.md`](../2026-07-tyler-cowen-search/corpus/README.md). Its final artifact is `corpus/unified/tyler-cowen-posts.jsonl`.
+The upstream acquisition scripts and record-level audits are documented in [`../2026-07-12-tyler-cowen-search/corpus/README.md`](../2026-07-12-tyler-cowen-search/corpus/README.md). Its final artifact is `corpus/unified/tyler-cowen-posts.jsonl`.
 
 ## 2. Corpus normalization and cleaning
 

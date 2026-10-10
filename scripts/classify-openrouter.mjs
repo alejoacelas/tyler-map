@@ -8,7 +8,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const CORPUS = resolve(ROOT, "../2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl");
+const CORPUS = resolve(ROOT, "../2026-07-12-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl");
 const MODEL = process.env.OPENROUTER_MODEL || "google/gemini-2.5-flash-lite";
 const MAX_COST = Number(process.env.OPENROUTER_MAX_COST_USD || 20);
 const MAX_OUTPUT_TOKENS = Math.max(500, Math.min(5000, Number(process.env.OPENROUTER_MAX_OUTPUT_TOKENS || 1500)));

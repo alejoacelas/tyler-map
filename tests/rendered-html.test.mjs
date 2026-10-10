@@ -70,7 +70,7 @@ test("ships source-valid audited visits with upward-only propagation", async () 
     readFile(new URL("../public/data/places.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../data/place-visits.jsonl", import.meta.url), "utf8").then((body) => body.trim().split("\n").map(JSON.parse)),
     readFile(new URL("../data/model-runs/place-visit-audit-v3/decisions.jsonl", import.meta.url), "utf8").then((body) => body.trim().split("\n").map(JSON.parse)),
-    readFile(new URL("../../2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl", import.meta.url), "utf8").then((body) => body.trim().split("\n").map(JSON.parse)),
+    readFile(new URL("../../2026-07-12-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl", import.meta.url), "utf8").then((body) => body.trim().split("\n").map(JSON.parse)),
   ]);
   const normalize = (value) => String(value || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
   const placeById = new Map(places.map((place) => [place.id, place]));

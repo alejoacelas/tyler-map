@@ -8,7 +8,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const CORPUS = resolve(ROOT, "../2026-07-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl");
+const CORPUS = resolve(ROOT, "../2026-07-12-tyler-cowen-search/corpus/unified/tyler-cowen-posts.jsonl");
 const RUN_ID = "top-place-audit-v1";
 const RUN_DIR = join(ROOT, "data/model-runs", RUN_ID);
 const OUTPUT = join(RUN_DIR, "decisions.jsonl");
