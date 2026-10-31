@@ -9,7 +9,6 @@ Live site: [tyler-map.vercel.app](https://tyler-map.vercel.app)
 - `app/`: the search-first website and public evaluation endpoint.
 - `public/data/`: the derived place index served by the site.
 - `data/`: manual overrides and review data.
-- `DECISIONS.md`: current source, geographic-evidence and retrieval decisions.
 - `scripts/`, `docs/`, and `tests/`: rebuild scripts, classification methods, checks, and gaps.
 - [`technical-decisions.md`](technical-decisions.md): one overview of corpus acquisition, cleaning, place resolution, model audits, hierarchy, ranking, interface, and remaining gaps.
 
